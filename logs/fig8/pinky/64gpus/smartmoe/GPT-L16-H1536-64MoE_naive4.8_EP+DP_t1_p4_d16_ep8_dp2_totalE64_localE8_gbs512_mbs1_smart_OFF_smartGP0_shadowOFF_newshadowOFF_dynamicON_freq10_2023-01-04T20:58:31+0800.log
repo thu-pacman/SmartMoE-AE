@@ -1,0 +1,759 @@
+using world size: 64, data-parallel-size: 16, tensor-model-parallel size: 1, pipeline-model-parallel size: 4 
+using torch.float16 for parameters ...
+------------------------ arguments ------------------------
+  accumulate_allreduce_grads_in_fp32 .............. False
+  adam_beta1 ...................................... 0.9
+  adam_beta2 ...................................... 0.95
+  adam_eps ........................................ 1e-08
+  adlr_autoresume ................................. False
+  adlr_autoresume_interval ........................ 1000
+  apply_query_key_layer_scaling ................... True
+  apply_residual_connection_post_layernorm ........ False
+  attention_dropout ............................... 0.1
+  attention_softmax_in_fp32 ....................... False
+  balance_loss_weight ............................. 1
+  balance_strategy ................................ naive
+  bert_binary_head ................................ True
+  bert_load ....................................... None
+  bf16 ............................................ False
+  bias_dropout_fusion ............................. True
+  bias_gelu_fusion ................................ True
+  biencoder_projection_dim ........................ 0
+  biencoder_shared_query_context_model ............ False
+  block_data_path ................................. None
+  checkpoint_activations .......................... False
+  checkpoint_num_layers ........................... 1
+  clip_grad ....................................... 1.0
+  consumed_train_samples .......................... 0
+  consumed_valid_samples .......................... 0
+  data_impl ....................................... infer
+  data_parallel_size .............................. 16
+  data_path ....................................... ['/GPUFS/thu_wgchen_2/zms/fastmoe-dataset/my-bert_text_sentence']
+  dataloader_type ................................. single
+  DDP_impl ........................................ local
+  decoder_seq_length .............................. None
+  distribute_checkpointed_activations ............. False
+  distributed_backend ............................. nccl
+  dump ............................................ False
+  dump_file ....................................... None
+  dump_freq ....................................... 10
+  dynamic_freq .................................... 10
+  dynamic_placement ............................... True
+  embedding_path .................................. None
+  encoder_seq_length .............................. 1024
+  eod_mask_loss ................................... False
+  eval_interval ................................... 1000
+  eval_iters ...................................... -1
+  evidence_data_path .............................. None
+  exit_duration_in_mins ........................... None
+  exit_interval ................................... None
+  expert_dp_size .................................. 2
+  expert_ep_size .................................. 8
+  expert_parallel_strategy ........................ EP+DP
+  ffn_hidden_size ................................. 6144
+  finetune ........................................ False
+  fmoefy .......................................... True
+  fp16 ............................................ True
+  fp16_lm_cross_entropy ........................... False
+  fp32_residual_connection ........................ False
+  global_batch_size ............................... 512
+  gshard_cap ...................................... 4.8
+  hidden_dropout .................................. 0.1
+  hidden_hidden_size .............................. None
+  hidden_size ..................................... 1536
+  hysteresis ...................................... 2
+  ict_head_size ................................... None
+  ict_load ........................................ None
+  img_dim ......................................... 224
+  indexer_batch_size .............................. 128
+  indexer_log_interval ............................ 1000
+  init_method_std ................................. 0.002
+  init_method_xavier_uniform ...................... False
+  initial_loss_scale .............................. 131072.0
+  kv_channels ..................................... 96
+  layernorm_epsilon ............................... 1e-05
+  lazy_mpu_init ................................... None
+  load ............................................ None
+  local_rank ...................................... None
+  log_batch_size_to_tensorboard ................... False
+  log_interval .................................... 1
+  log_learning_rate_to_tensorboard ................ True
+  log_loss_scale_to_tensorboard ................... True
+  log_memory_to_tensorboard ....................... False
+  log_num_zeros_in_grad ........................... True
+  log_params_norm ................................. True
+  log_timers_to_tensorboard ....................... False
+  log_validation_ppl_to_tensorboard ............... False
+  loss_scale ...................................... None
+  loss_scale_window ............................... 1000
+  lr .............................................. 0.0001
+  lr_decay_iters .................................. None
+  lr_decay_samples ................................ 4882800
+  lr_decay_style .................................. cosine
+  lr_warmup_fraction .............................. None
+  lr_warmup_iters ................................. 0
+  lr_warmup_samples ............................... 0
+  make_vocab_size_divisible_by .................... 128
+  mask_prob ....................................... 0.15
+  masked_softmax_fusion ........................... True
+  max_position_embeddings ......................... 1024
+  merge_file ...................................... /GPUFS/thu_wgchen_2/zms/fastmoe-dataset/gpt2-merges.txt
+  micro_batch_size ................................ 1
+  min_loss_scale .................................. 1.0
+  min_lr .......................................... 1e-05
+  mmap_warmup ..................................... False
+  new_shadow ...................................... False
+  no_load_optim ................................... None
+  no_load_rng ..................................... None
+  no_save_optim ................................... None
+  no_save_rng ..................................... None
+  num_attention_heads ............................. 16
+  num_channels .................................... 3
+  num_classes ..................................... 1000
+  num_experts ..................................... 8
+  num_layers ...................................... 16
+  num_layers_per_virtual_pipeline_stage ........... None
+  num_workers ..................................... 2
+  onnx_safe ....................................... None
+  openai_gelu ..................................... False
+  optimizer ....................................... adam
+  override_lr_scheduler ........................... False
+  params_dtype .................................... torch.float16
+  patch_dim ....................................... 16
+  pipeline_model_parallel_size .................... 4
+  query_in_block_prob ............................. 0.1
+  rampup_batch_size ............................... None
+  rank ............................................ 0
+  reset_attention_mask ............................ False
+  reset_position_ids .............................. False
+  retriever_report_topk_accuracies ................ []
+  retriever_score_scaling ......................... False
+  retriever_seq_length ............................ 256
+  sample_rate ..................................... 1.0
+  save ............................................ None
+  save_interval ................................... None
+  scatter_gather_tensors_in_pipeline .............. True
+  seed ............................................ 1234
+  seq_length ...................................... 1024
+  sgd_momentum .................................... 0.9
+  short_seq_prob .................................. 0.1
+  split ........................................... 100,0,0
+  tensor_model_parallel_size ...................... 1
+  tensorboard_dir ................................. None
+  tensorboard_log_interval ........................ 1
+  tensorboard_queue_size .......................... 1000
+  titles_data_path ................................ None
+  tokenizer_type .................................. GPT2BPETokenizer
+  top_k ........................................... 2
+  train_iters ..................................... None
+  train_samples ................................... 102400
+  use_checkpoint_lr_scheduler ..................... False
+  use_contiguous_buffers_in_ddp ................... False
+  use_cpu_initialization .......................... None
+  use_one_sent_docs ............................... False
+  virtual_pipeline_model_parallel_size ............ None
+  vocab_extra_ids ................................. 0
+  vocab_file ...................................... /GPUFS/thu_wgchen_2/zms/fastmoe-dataset/gpt2-vocab.json
+  weight_decay .................................... 0.01
+  world_size ...................................... 64
+-------------------- end of arguments ---------------------
+setting number of micro-batches to constant 32
+> building GPT2BPETokenizer tokenizer ...
+ > padded vocab (size: 50257) with 47 dummy tokens (new size: 50304)
+> initializing torch distributed ...
+> initializing tensor model parallel with size 1
+> initializing pipeline model parallel with size 4
+[INFO] 0 in EP group [0, 1, 2, 3, 4, 5, 6, 7]
+[INFO] 6 in EP group [0, 1, 2, 3, 4, 5, 6, 7]
+[INFO] 7 in EP group [0, 1, 2, 3, 4, 5, 6, 7]
+[INFO] 4 in EP group [0, 1, 2, 3, 4, 5, 6, 7]
+[INFO] 5 in EP group [0, 1, 2, 3, 4, 5, 6, 7]
+[INFO] 2 in EP group [0, 1, 2, 3, 4, 5, 6, 7]
+[INFO] 3 in EP group [0, 1, 2, 3, 4, 5, 6, 7]
+[INFO] 1 in EP group [0, 1, 2, 3, 4, 5, 6, 7]
+[INFO] 8 in EP group [8, 9, 10, 11, 12, 13, 14, 15]
+[INFO] 10 in EP group [8, 9, 10, 11, 12, 13, 14, 15]
+[INFO] 13 in EP group [8, 9, 10, 11, 12, 13, 14, 15]
+[INFO] 11 in EP group [8, 9, 10, 11, 12, 13, 14, 15]
+[INFO] 15 in EP group [8, 9, 10, 11, 12, 13, 14, 15]
+[INFO] 12 in EP group [8, 9, 10, 11, 12, 13, 14, 15]
+[INFO] 9 in EP group [8, 9, 10, 11, 12, 13, 14, 15]
+[INFO] 14 in EP group [8, 9, 10, 11, 12, 13, 14, 15]
+[INFO] 0 in DP group [0, 8]
+[INFO] 8 in DP group [0, 8]
+[INFO] 1 in DP group [1, 9]
+[INFO] 9 in DP group [1, 9]
+[INFO] 2 in DP group [2, 10]
+[INFO] 10 in DP group [2, 10]
+[INFO] 3 in DP group [3, 11]
+[INFO] 11 in DP group [3, 11]
+[INFO] 4 in DP group [4, 12]
+[INFO] 12 in DP group [4, 12]
+[INFO] 5 in DP group [5, 13]
+[INFO] 13 in DP group [5, 13]
+[INFO] 6 in DP group [6, 14]
+[INFO] 14 in DP group [6, 14]
+[INFO] 7 in DP group [7, 15]
+[INFO] 15 in DP group [7, 15]
+[INFO] 16 in EP group [16, 17, 18, 19, 20, 21, 22, 23]
+[INFO] 23 in EP group [16, 17, 18, 19, 20, 21, 22, 23]
+[INFO] 21 in EP group [16, 17, 18, 19, 20, 21, 22, 23]
+[INFO] 20 in EP group [16, 17, 18, 19, 20, 21, 22, 23]
+[INFO] 19 in EP group [16, 17, 18, 19, 20, 21, 22, 23]
+[INFO] 18 in EP group [16, 17, 18, 19, 20, 21, 22, 23]
+[INFO] 22 in EP group [16, 17, 18, 19, 20, 21, 22, 23]
+[INFO] 17 in EP group [16, 17, 18, 19, 20, 21, 22, 23]
+[INFO] 24 in EP group [24, 25, 26, 27, 28, 29, 30, 31]
+[INFO] 27 in EP group [24, 25, 26, 27, 28, 29, 30, 31]
+[INFO] 26 in EP group [24, 25, 26, 27, 28, 29, 30, 31]
+[INFO] 29 in EP group [24, 25, 26, 27, 28, 29, 30, 31]
+[INFO] 31 in EP group [24, 25, 26, 27, 28, 29, 30, 31]
+[INFO] 25 in EP group [24, 25, 26, 27, 28, 29, 30, 31]
+[INFO] 30 in EP group [24, 25, 26, 27, 28, 29, 30, 31]
+[INFO] 28 in EP group [24, 25, 26, 27, 28, 29, 30, 31]
+[INFO] 16 in DP group [16, 24]
+[INFO] 24 in DP group [16, 24]
+[INFO] 17 in DP group [17, 25]
+[INFO] 25 in DP group [17, 25]
+[INFO] 18 in DP group [18, 26]
+[INFO] 26 in DP group [18, 26]
+[INFO] 19 in DP group [19, 27]
+[INFO] 27 in DP group [19, 27]
+[INFO] 20 in DP group [20, 28]
+[INFO] 28 in DP group [20, 28]
+[INFO] 21 in DP group [21, 29]
+[INFO] 29 in DP group [21, 29]
+[INFO] 22 in DP group [22, 30]
+[INFO] 30 in DP group [22, 30]
+[INFO] 23 in DP group [23, 31]
+[INFO] 31 in DP group [23, 31]
+[INFO] 32 in EP group [32, 33, 34, 35, 36, 37, 38, 39]
+[INFO] 34 in EP group [32, 33, 34, 35, 36, 37, 38, 39]
+[INFO] 33 in EP group [32, 33, 34, 35, 36, 37, 38, 39]
+[INFO] 38 in EP group [32, 33, 34, 35, 36, 37, 38, 39]
+[INFO] 35 in EP group [32, 33, 34, 35, 36, 37, 38, 39]
+[INFO] 39 in EP group [32, 33, 34, 35, 36, 37, 38, 39]
+[INFO] 37 in EP group [32, 33, 34, 35, 36, 37, 38, 39]
+[INFO] 36 in EP group [32, 33, 34, 35, 36, 37, 38, 39]
+[INFO] 40 in EP group [40, 41, 42, 43, 44, 45, 46, 47]
+[INFO] 44 in EP group [40, 41, 42, 43, 44, 45, 46, 47]
+[INFO] 43 in EP group [40, 41, 42, 43, 44, 45, 46, 47]
+[INFO] 42 in EP group [40, 41, 42, 43, 44, 45, 46, 47]
+[INFO] 41 in EP group [40, 41, 42, 43, 44, 45, 46, 47]
+[INFO] 47 in EP group [40, 41, 42, 43, 44, 45, 46, 47]
+[INFO] 46 in EP group [40, 41, 42, 43, 44, 45, 46, 47]
+[INFO] 45 in EP group [40, 41, 42, 43, 44, 45, 46, 47]
+[INFO] 32 in DP group [32, 40]
+[INFO] 40 in DP group [32, 40]
+[INFO] 33 in DP group [33, 41]
+[INFO] 41 in DP group [33, 41]
+[INFO] 34 in DP group [34, 42]
+[INFO] 42 in DP group [34, 42]
+[INFO] 35 in DP group [35, 43]
+[INFO] 43 in DP group [35, 43]
+[INFO] 36 in DP group [36, 44]
+[INFO] 44 in DP group [36, 44]
+[INFO] 37 in DP group [37, 45]
+[INFO] 45 in DP group [37, 45]
+[INFO] 38 in DP group [38, 46]
+[INFO] 46 in DP group [38, 46]
+[INFO] 39 in DP group [39, 47]
+[INFO] 47 in DP group [39, 47]
+[INFO] 48 in EP group [48, 49, 50, 51, 52, 53, 54, 55]
+[INFO] 50 in EP group [48, 49, 50, 51, 52, 53, 54, 55]
+[INFO] 55 in EP group [48, 49, 50, 51, 52, 53, 54, 55]
+[INFO] 49 in EP group [48, 49, 50, 51, 52, 53, 54, 55]
+[INFO] 51 in EP group [48, 49, 50, 51, 52, 53, 54, 55]
+[INFO] 54 in EP group [48, 49, 50, 51, 52, 53, 54, 55]
+[INFO] 53 in EP group [48, 49, 50, 51, 52, 53, 54, 55]
+[INFO] 52 in EP group [48, 49, 50, 51, 52, 53, 54, 55]
+[INFO] 56 in EP group [56, 57, 58, 59, 60, 61, 62, 63]
+[INFO] 58 in EP group [56, 57, 58, 59, 60, 61, 62, 63]
+[INFO] 59 in EP group [56, 57, 58, 59, 60, 61, 62, 63]
+[INFO] 57 in EP group [56, 57, 58, 59, 60, 61, 62, 63]
+[INFO] 63 in EP group [56, 57, 58, 59, 60, 61, 62, 63]
+[INFO] 62 in EP group [56, 57, 58, 59, 60, 61, 62, 63]
+[INFO] 61 in EP group [56, 57, 58, 59, 60, 61, 62, 63]
+[INFO] 60 in EP group [56, 57, 58, 59, 60, 61, 62, 63]
+[INFO] 48 in DP group [48, 56]
+[INFO] 56 in DP group [48, 56]
+[INFO] 49 in DP group [49, 57]
+[INFO] 57 in DP group [49, 57]
+[INFO] 50 in DP group [50, 58]
+[INFO] 58 in DP group [50, 58]
+[INFO] 51 in DP group [51, 59]
+[INFO] 59 in DP group [51, 59]
+[INFO] 52 in DP group [52, 60]
+[INFO] 60 in DP group [52, 60]
+[INFO] 53 in DP group [53, 61]
+[INFO] 61 in DP group [53, 61]
+[INFO] 54 in DP group [54, 62]
+[INFO] 62 in DP group [54, 62]
+[W ProcessGroupNCCL.cpp:1569] Rank 11 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+> setting random seeds to 1234 ...
+[W ProcessGroupNCCL.cpp:1569] Rank 61 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 60 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[INFO] 55 in DP group [55, 63]
+[W ProcessGroupNCCL.cpp:1569] Rank 9 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[INFO] 63 in DP group [55, 63]
+[W ProcessGroupNCCL.cpp:1569] Rank 10 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 63 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 7 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 62 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+> initializing model parallel cuda seeds on global rank 0, model parallel rank 0, and data parallel rank 0 with model parallel seed: 3952 and data parallel seed: 1234
+[W ProcessGroupNCCL.cpp:1569] Rank 8 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 34 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 30 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 33 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 36 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 5 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 6 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 4 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 28 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 38 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 29 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 37 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 48 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 50 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 39 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+> compiling dataset index builder ...
+[W ProcessGroupNCCL.cpp:1569] Rank 49 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 41 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 56 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 3 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 1 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 2 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 58 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 32 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 21 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 57 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 35 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 22 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 59 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 43 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 53 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 15 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 55 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 54 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 12 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 13 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 14 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 31 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 20 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 40 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 45 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 44 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 47 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 46 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 17 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 19 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 16 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 18 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 23 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 42 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 27 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 26 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 52 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 24 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 25 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+[W ProcessGroupNCCL.cpp:1569] Rank 51 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+make: 进入目录“/GPUFS/thu_wgchen_2/zms/FastMoe-Megatron/Megatron-LM/megatron/data”
+make: 对“default”无需做任何事。
+make: 离开目录“/GPUFS/thu_wgchen_2/zms/FastMoe-Megatron/Megatron-LM/megatron/data”
+>>> done with dataset index builder. Compilation time: 0.184 seconds
+> compiling and loading fused kernels ...
+Detected CUDA files, patching ldflags
+Emitting ninja build file /GPUFS/thu_wgchen_2/zms/FastMoe-Megatron/Megatron-LM/megatron/fused_kernels/build/build.ninja...
+Building extension module scaled_upper_triang_masked_softmax_cuda...
+Using envvar MAX_JOBS (64) as the number of workers...
+ninja: no work to do.
+Loading extension module scaled_upper_triang_masked_softmax_cuda...
+Detected CUDA files, patching ldflags
+Emitting ninja build file /GPUFS/thu_wgchen_2/zms/FastMoe-Megatron/Megatron-LM/megatron/fused_kernels/build/build.ninja...
+Building extension module scaled_masked_softmax_cuda...
+Using envvar MAX_JOBS (64) as the number of workers...
+ninja: no work to do.
+Loading extension module scaled_masked_softmax_cuda...
+Detected CUDA files, patching ldflags
+Emitting ninja build file /GPUFS/thu_wgchen_2/zms/FastMoe-Megatron/Megatron-LM/megatron/fused_kernels/build/build.ninja...
+Building extension module fused_mix_prec_layer_norm_cuda...
+Using envvar MAX_JOBS (64) as the number of workers...
+ninja: no work to do.
+Loading extension module fused_mix_prec_layer_norm_cuda...
+[W ProcessGroupNCCL.cpp:1569] Rank 0 using best-guess GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device.
+>>> done with compiling and loading fused kernels. Compilation time: 17.727 seconds
+time to initialize megatron (seconds): 170.418
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+[after megatron is initialized] datetime: 2023-01-04 21:01:30 
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+hhs=3072
+building GPT model ...
+hhs=3072
+hhs=3072
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 1): 340328704
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 0): 419168512
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 3): 417598720
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+setting training iterations to 200
+> learning rate decay style: cosine
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 2): 340328704
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[WARNING] world comm group not exist!
+[after model, optimizer, and learning rate scheduler are built] datetime: 2023-01-04 21:01:39 
+> building train, validation, and test datasets ...
+ > datasets target sizes (minimum size):
+    train:      102400
+    validation: -512
+    test:       -512
+> building train, validation, and test datasets for GPT ...
+ > building dataset index ...
+    reading sizes...
+    reading pointers...
+    reading document index...
+    creating numpy buffer of mmap...
+    creating memory view of numpy buffer...
+ > finished creating indexed dataset in 0.051568 seconds
+    number of documents: 106824622
+ > dataset split:
+    train:
+     document indices in [0, 106824622) total of 106824622 documents
+    validation:
+     document indices in [106824622, 106824622) total of 0 documents
+    test:
+     document indices in [106824622, 106824622) total of 0 documents
+ > loading doc-idx mapping from /GPUFS/thu_wgchen_2/zms/fastmoe-dataset/my-bert_text_sentence_train_indexmap_102400ns_1024sl_1234s_doc_idx.npy
+ > loading sample-idx mapping from /GPUFS/thu_wgchen_2/zms/fastmoe-dataset/my-bert_text_sentence_train_indexmap_102400ns_1024sl_1234s_sample_idx.npy
+ > loading shuffle-idx mapping from /GPUFS/thu_wgchen_2/zms/fastmoe-dataset/my-bert_text_sentence_train_indexmap_102400ns_1024sl_1234s_shuffle_idx.npy
+    loaded indexed file in 0.117 seconds
+    total number of samples: 2899936
+    total number of epochs: 1
+> finished creating GPT datasets ...
+[after dataloaders are built] datetime: 2023-01-04 21:01:52 
+done with setup ...
+training ...
+[before the start of training step] datetime: 2023-01-04 21:01:52 
+ iteration        1/     200 | consumed samples:          512 | elapsed time per iteration (ms): 24995.6 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 1.082732E+01 | loss scale: 131072.0 | grad norm: 9.198 | num zeros: 140761.0 | params norm: 233.037 | number of skipped iterations:   0 | number of nan iterations:   0 |
+[Rank 0] (after 1 iterations) memory (MB) | allocated: 8006.25 | max allocated: 8006.25244140625 | reserved: 9042.0 | max reserved: 9042.0
+[Rank 16] (after 1 iterations) memory (MB) | allocated: 6510.73828125 | max allocated: 6510.74072265625 | reserved: 7246.0 | max reserved: 7246.0
+[Rank 32] (after 1 iterations) memory (MB) | allocated: 6510.9091796875 | max allocated: 6510.91162109375 | reserved: 7034.0 | max reserved: 7034.0
+[Rank 48] (after 1 iterations) memory (MB) | allocated: 7987.1396484375 | max allocated: 7987.17041015625 | reserved: 8200.0 | max reserved: 8200.0
+ iteration        2/     200 | consumed samples:         1024 | elapsed time per iteration (ms): 16746.3 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 1.049265E+01 | loss scale: 131072.0 | grad norm: 4.307 | num zeros: 748906304.0 | params norm: 233.081 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration        3/     200 | consumed samples:         1536 | elapsed time per iteration (ms): 14815.4 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 1.034248E+01 | loss scale: 131072.0 | grad norm: 4.034 | num zeros: 719238336.0 | params norm: 233.125 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration        4/     200 | consumed samples:         2048 | elapsed time per iteration (ms): 13389.8 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 1.151336E+01 | loss scale: 131072.0 | grad norm: 3.952 | num zeros: 804392192.0 | params norm: 233.166 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration        5/     200 | consumed samples:         2560 | elapsed time per iteration (ms): 14009.2 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 1.146662E+01 | loss scale: 131072.0 | grad norm: 4.020 | num zeros: 851384768.0 | params norm: 233.212 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration        6/     200 | consumed samples:         3072 | elapsed time per iteration (ms): 12792.6 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 1.102675E+01 | loss scale: 131072.0 | grad norm: 11.080 | num zeros: 833533120.0 | params norm: 233.258 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration        7/     200 | consumed samples:         3584 | elapsed time per iteration (ms): 13043.7 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 1.024276E+01 | loss scale: 131072.0 | grad norm: 4.027 | num zeros: 898703232.0 | params norm: 233.305 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration        8/     200 | consumed samples:         4096 | elapsed time per iteration (ms): 12163.9 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 1.015850E+01 | loss scale: 131072.0 | grad norm: 3.945 | num zeros: 983859840.0 | params norm: 233.355 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration        9/     200 | consumed samples:         4608 | elapsed time per iteration (ms): 10840.4 | learning rate: 1.000E-04 | global batch size:   512 | loss scale: 131072.0 | params norm: 233.355 | number of skipped iterations:   1 | number of nan iterations:   0 |
+ iteration       10/     200 | consumed samples:         5120 | elapsed time per iteration (ms): 13325.4 | learning rate: 1.000E-04 | global batch size:   512 | loss scale: 65536.0 | params norm: 233.354 | number of skipped iterations:   1 | number of nan iterations:   0 |
+ iteration       11/     200 | consumed samples:         5632 | elapsed time per iteration (ms): 11441.4 | learning rate: 1.000E-04 | global batch size:   512 | loss scale: 32768.0 | params norm: 233.354 | number of skipped iterations:   1 | number of nan iterations:   0 |
+ iteration       12/     200 | consumed samples:         6144 | elapsed time per iteration (ms): 10912.5 | learning rate: 1.000E-04 | global batch size:   512 | loss scale: 16384.0 | params norm: 233.354 | number of skipped iterations:   1 | number of nan iterations:   0 |
+ iteration       13/     200 | consumed samples:         6656 | elapsed time per iteration (ms): 11801.1 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 1.029168E+01 | loss scale: 16384.0 | grad norm: 59.855 | num zeros: 351643072.0 | params norm: 233.400 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       14/     200 | consumed samples:         7168 | elapsed time per iteration (ms): 10974.0 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 1.001731E+01 | loss scale: 16384.0 | grad norm: 3.937 | num zeros: 1038052864.0 | params norm: 233.447 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       15/     200 | consumed samples:         7680 | elapsed time per iteration (ms): 10134.7 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 9.921139E+00 | loss scale: 16384.0 | grad norm: 3.922 | num zeros: 1045008000.0 | params norm: 233.493 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       16/     200 | consumed samples:         8192 | elapsed time per iteration (ms): 11312.6 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 9.819345E+00 | loss scale: 16384.0 | grad norm: 3.910 | num zeros: 1068734144.0 | params norm: 233.539 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       17/     200 | consumed samples:         8704 | elapsed time per iteration (ms): 11448.1 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 9.712626E+00 | loss scale: 16384.0 | grad norm: 3.902 | num zeros: 1026858880.0 | params norm: 233.586 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       18/     200 | consumed samples:         9216 | elapsed time per iteration (ms): 12178.0 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 9.597492E+00 | loss scale: 16384.0 | grad norm: 3.912 | num zeros: 1112727424.0 | params norm: 233.633 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       19/     200 | consumed samples:         9728 | elapsed time per iteration (ms): 10225.4 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 9.481350E+00 | loss scale: 16384.0 | grad norm: 3.900 | num zeros: 1023735936.0 | params norm: 233.681 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       20/     200 | consumed samples:        10240 | elapsed time per iteration (ms): 12503.5 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 9.361315E+00 | loss scale: 16384.0 | grad norm: 3.896 | num zeros: 880626560.0 | params norm: 233.728 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       21/     200 | consumed samples:        10752 | elapsed time per iteration (ms): 9160.0 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 9.240623E+00 | loss scale: 16384.0 | grad norm: 3.909 | num zeros: 953031936.0 | params norm: 233.775 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       22/     200 | consumed samples:        11264 | elapsed time per iteration (ms): 10265.1 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 9.122384E+00 | loss scale: 16384.0 | grad norm: 3.875 | num zeros: 1059214080.0 | params norm: 233.822 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       23/     200 | consumed samples:        11776 | elapsed time per iteration (ms): 9206.7 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 9.004273E+00 | loss scale: 16384.0 | grad norm: 3.877 | num zeros: 1086045184.0 | params norm: 233.869 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       24/     200 | consumed samples:        12288 | elapsed time per iteration (ms): 9337.6 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 8.888655E+00 | loss scale: 16384.0 | grad norm: 3.862 | num zeros: 1149043200.0 | params norm: 233.917 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       25/     200 | consumed samples:        12800 | elapsed time per iteration (ms): 10249.7 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 8.779311E+00 | loss scale: 16384.0 | grad norm: 3.855 | num zeros: 1149016320.0 | params norm: 233.964 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       26/     200 | consumed samples:        13312 | elapsed time per iteration (ms): 11248.6 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 8.671345E+00 | loss scale: 16384.0 | grad norm: 3.854 | num zeros: 1140850304.0 | params norm: 234.011 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       27/     200 | consumed samples:        13824 | elapsed time per iteration (ms): 9207.5 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 8.573793E+00 | loss scale: 16384.0 | grad norm: 3.834 | num zeros: 1114993024.0 | params norm: 234.058 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       28/     200 | consumed samples:        14336 | elapsed time per iteration (ms): 10077.3 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 8.479588E+00 | loss scale: 16384.0 | grad norm: 3.777 | num zeros: 846078528.0 | params norm: 234.106 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       29/     200 | consumed samples:        14848 | elapsed time per iteration (ms): 8756.5 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 8.381559E+00 | loss scale: 16384.0 | grad norm: 3.768 | num zeros: 1148402944.0 | params norm: 234.154 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       30/     200 | consumed samples:        15360 | elapsed time per iteration (ms): 9830.2 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 8.292710E+00 | loss scale: 16384.0 | grad norm: 3.726 | num zeros: 1147591168.0 | params norm: 234.202 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       31/     200 | consumed samples:        15872 | elapsed time per iteration (ms): 9061.1 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 8.214026E+00 | loss scale: 16384.0 | grad norm: 3.676 | num zeros: 763899840.0 | params norm: 234.249 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       32/     200 | consumed samples:        16384 | elapsed time per iteration (ms): 9205.1 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 8.120656E+00 | loss scale: 16384.0 | grad norm: 3.660 | num zeros: 1072400256.0 | params norm: 234.296 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       33/     200 | consumed samples:        16896 | elapsed time per iteration (ms): 9047.7 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 8.044085E+00 | loss scale: 16384.0 | grad norm: 3.606 | num zeros: 1054230336.0 | params norm: 234.342 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       34/     200 | consumed samples:        17408 | elapsed time per iteration (ms): 8491.3 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 7.968397E+00 | loss scale: 16384.0 | grad norm: 3.532 | num zeros: 987738880.0 | params norm: 234.387 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       35/     200 | consumed samples:        17920 | elapsed time per iteration (ms): 9535.3 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 7.892539E+00 | loss scale: 16384.0 | grad norm: 3.470 | num zeros: 1012709760.0 | params norm: 234.433 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       36/     200 | consumed samples:        18432 | elapsed time per iteration (ms): 9087.7 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 7.827689E+00 | loss scale: 16384.0 | grad norm: 3.372 | num zeros: 1117279744.0 | params norm: 234.477 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       37/     200 | consumed samples:        18944 | elapsed time per iteration (ms): 9033.8 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 7.765276E+00 | loss scale: 16384.0 | grad norm: 3.263 | num zeros: 1120282368.0 | params norm: 234.522 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       38/     200 | consumed samples:        19456 | elapsed time per iteration (ms): 8514.0 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 7.698500E+00 | loss scale: 16384.0 | grad norm: 3.133 | num zeros: 1118425472.0 | params norm: 234.567 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       39/     200 | consumed samples:        19968 | elapsed time per iteration (ms): 9915.6 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 7.648622E+00 | loss scale: 16384.0 | grad norm: 2.953 | num zeros: 1114653824.0 | params norm: 234.612 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       40/     200 | consumed samples:        20480 | elapsed time per iteration (ms): 11323.1 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 7.591491E+00 | loss scale: 16384.0 | grad norm: 2.798 | num zeros: 1147354368.0 | params norm: 234.656 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       41/     200 | consumed samples:        20992 | elapsed time per iteration (ms): 11260.5 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 7.542126E+00 | loss scale: 16384.0 | grad norm: 2.615 | num zeros: 1123942912.0 | params norm: 234.699 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       42/     200 | consumed samples:        21504 | elapsed time per iteration (ms): 9755.5 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 7.503128E+00 | loss scale: 16384.0 | grad norm: 2.350 | num zeros: 1082462336.0 | params norm: 234.742 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       43/     200 | consumed samples:        22016 | elapsed time per iteration (ms): 9010.0 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 7.465139E+00 | loss scale: 16384.0 | grad norm: 2.114 | num zeros: 951415680.0 | params norm: 234.785 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       44/     200 | consumed samples:        22528 | elapsed time per iteration (ms): 9624.7 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 7.430889E+00 | loss scale: 16384.0 | grad norm: 1.823 | num zeros: 821122944.0 | params norm: 234.827 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       45/     200 | consumed samples:        23040 | elapsed time per iteration (ms): 9981.8 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 7.408776E+00 | loss scale: 16384.0 | grad norm: 1.562 | num zeros: 559557120.0 | params norm: 234.869 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       46/     200 | consumed samples:        23552 | elapsed time per iteration (ms): 8713.2 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 7.380323E+00 | loss scale: 16384.0 | grad norm: 1.279 | num zeros: 1056978240.0 | params norm: 234.911 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       47/     200 | consumed samples:        24064 | elapsed time per iteration (ms): 9716.3 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 7.353044E+00 | loss scale: 16384.0 | grad norm: 1.021 | num zeros: 962764864.0 | params norm: 234.955 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       48/     200 | consumed samples:        24576 | elapsed time per iteration (ms): 9913.2 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 7.338257E+00 | loss scale: 16384.0 | grad norm: 0.923 | num zeros: 610748672.0 | params norm: 235.001 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       49/     200 | consumed samples:        25088 | elapsed time per iteration (ms): 8828.1 | learning rate: 1.000E-04 | global batch size:   512 | lm loss: 7.322448E+00 | loss scale: 16384.0 | grad norm: 0.924 | num zeros: 717367552.0 | params norm: 235.046 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       50/     200 | consumed samples:        25600 | elapsed time per iteration (ms): 8930.5 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.311243E+00 | loss scale: 16384.0 | grad norm: 0.859 | num zeros: 827361408.0 | params norm: 235.091 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       51/     200 | consumed samples:        26112 | elapsed time per iteration (ms): 8168.9 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.303651E+00 | loss scale: 16384.0 | grad norm: 0.765 | num zeros: 644475264.0 | params norm: 235.135 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       52/     200 | consumed samples:        26624 | elapsed time per iteration (ms): 10030.2 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.287891E+00 | loss scale: 16384.0 | grad norm: 0.548 | num zeros: 564137408.0 | params norm: 235.180 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       53/     200 | consumed samples:        27136 | elapsed time per iteration (ms): 8836.5 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.288914E+00 | loss scale: 16384.0 | grad norm: 0.962 | num zeros: 421287552.0 | params norm: 235.227 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       54/     200 | consumed samples:        27648 | elapsed time per iteration (ms): 8474.9 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.275267E+00 | loss scale: 16384.0 | grad norm: 0.592 | num zeros: 616194944.0 | params norm: 235.274 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       55/     200 | consumed samples:        28160 | elapsed time per iteration (ms): 8185.7 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.264629E+00 | loss scale: 16384.0 | grad norm: 0.723 | num zeros: 724439552.0 | params norm: 235.321 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       56/     200 | consumed samples:        28672 | elapsed time per iteration (ms): 8787.9 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.246611E+00 | loss scale: 16384.0 | grad norm: 0.553 | num zeros: 705374912.0 | params norm: 235.367 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       57/     200 | consumed samples:        29184 | elapsed time per iteration (ms): 9456.1 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.233689E+00 | loss scale: 16384.0 | grad norm: 0.494 | num zeros: 757250432.0 | params norm: 235.413 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       58/     200 | consumed samples:        29696 | elapsed time per iteration (ms): 9895.8 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.216503E+00 | loss scale: 16384.0 | grad norm: 0.418 | num zeros: 761325760.0 | params norm: 235.460 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       59/     200 | consumed samples:        30208 | elapsed time per iteration (ms): 9811.9 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.212363E+00 | loss scale: 16384.0 | grad norm: 0.376 | num zeros: 733531776.0 | params norm: 235.508 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       60/     200 | consumed samples:        30720 | elapsed time per iteration (ms): 11510.5 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.199116E+00 | loss scale: 16384.0 | grad norm: 0.341 | num zeros: 682555456.0 | params norm: 235.555 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       61/     200 | consumed samples:        31232 | elapsed time per iteration (ms): 8211.7 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.182819E+00 | loss scale: 16384.0 | grad norm: 0.399 | num zeros: 673476864.0 | params norm: 235.602 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       62/     200 | consumed samples:        31744 | elapsed time per iteration (ms): 8844.3 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.179380E+00 | loss scale: 16384.0 | grad norm: 0.623 | num zeros: 673812160.0 | params norm: 235.649 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       63/     200 | consumed samples:        32256 | elapsed time per iteration (ms): 10329.0 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.172459E+00 | loss scale: 16384.0 | grad norm: 0.313 | num zeros: 777230976.0 | params norm: 235.694 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       64/     200 | consumed samples:        32768 | elapsed time per iteration (ms): 9425.1 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.165299E+00 | loss scale: 16384.0 | grad norm: 0.430 | num zeros: 751782912.0 | params norm: 235.738 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       65/     200 | consumed samples:        33280 | elapsed time per iteration (ms): 8552.8 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.160829E+00 | loss scale: 16384.0 | grad norm: 0.359 | num zeros: 817177984.0 | params norm: 235.782 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       66/     200 | consumed samples:        33792 | elapsed time per iteration (ms): 7853.4 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.145222E+00 | loss scale: 16384.0 | grad norm: 0.264 | num zeros: 780357760.0 | params norm: 235.825 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       67/     200 | consumed samples:        34304 | elapsed time per iteration (ms): 7495.8 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.149868E+00 | loss scale: 16384.0 | grad norm: 0.293 | num zeros: 825051072.0 | params norm: 235.868 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       68/     200 | consumed samples:        34816 | elapsed time per iteration (ms): 8606.6 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.135736E+00 | loss scale: 16384.0 | grad norm: 0.178 | num zeros: 785649664.0 | params norm: 235.909 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       69/     200 | consumed samples:        35328 | elapsed time per iteration (ms): 8467.1 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.133029E+00 | loss scale: 16384.0 | grad norm: 0.260 | num zeros: 802320768.0 | params norm: 235.950 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       70/     200 | consumed samples:        35840 | elapsed time per iteration (ms): 8387.8 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.137722E+00 | loss scale: 16384.0 | grad norm: 0.496 | num zeros: 692108416.0 | params norm: 235.989 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       71/     200 | consumed samples:        36352 | elapsed time per iteration (ms): 7583.5 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.124844E+00 | loss scale: 16384.0 | grad norm: 0.363 | num zeros: 636864000.0 | params norm: 236.028 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       72/     200 | consumed samples:        36864 | elapsed time per iteration (ms): 7739.7 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.129478E+00 | loss scale: 16384.0 | grad norm: 0.254 | num zeros: 616640256.0 | params norm: 236.065 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       73/     200 | consumed samples:        37376 | elapsed time per iteration (ms): 9124.1 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.122500E+00 | loss scale: 16384.0 | grad norm: 0.336 | num zeros: 712781440.0 | params norm: 236.102 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       74/     200 | consumed samples:        37888 | elapsed time per iteration (ms): 8205.6 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.115629E+00 | loss scale: 16384.0 | grad norm: 0.430 | num zeros: 760788864.0 | params norm: 236.137 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       75/     200 | consumed samples:        38400 | elapsed time per iteration (ms): 7990.2 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.118961E+00 | loss scale: 16384.0 | grad norm: 0.655 | num zeros: 753565184.0 | params norm: 236.172 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       76/     200 | consumed samples:        38912 | elapsed time per iteration (ms): 8308.8 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.104840E+00 | loss scale: 16384.0 | grad norm: 0.253 | num zeros: 762789376.0 | params norm: 236.207 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       77/     200 | consumed samples:        39424 | elapsed time per iteration (ms): 9722.3 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.098251E+00 | loss scale: 16384.0 | grad norm: 0.320 | num zeros: 797495808.0 | params norm: 236.240 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       78/     200 | consumed samples:        39936 | elapsed time per iteration (ms): 8008.9 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.099875E+00 | loss scale: 16384.0 | grad norm: 0.272 | num zeros: 776495360.0 | params norm: 236.272 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       79/     200 | consumed samples:        40448 | elapsed time per iteration (ms): 7810.9 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.094439E+00 | loss scale: 16384.0 | grad norm: 0.199 | num zeros: 777693696.0 | params norm: 236.303 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       80/     200 | consumed samples:        40960 | elapsed time per iteration (ms): 7558.3 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.085955E+00 | loss scale: 16384.0 | grad norm: 0.243 | num zeros: 792930688.0 | params norm: 236.334 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       81/     200 | consumed samples:        41472 | elapsed time per iteration (ms): 9851.7 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.088581E+00 | loss scale: 16384.0 | grad norm: 0.331 | num zeros: 806095872.0 | params norm: 236.364 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       82/     200 | consumed samples:        41984 | elapsed time per iteration (ms): 17454.2 | learning rate: 9.999E-05 | global batch size:   512 | lm loss: 7.087652E+00 | loss scale: 16384.0 | grad norm: 0.472 | num zeros: 784159680.0 | params norm: 236.394 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       83/     200 | consumed samples:        42496 | elapsed time per iteration (ms): 17534.5 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 7.088455E+00 | loss scale: 16384.0 | grad norm: 0.983 | num zeros: 748933120.0 | params norm: 236.422 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       84/     200 | consumed samples:        43008 | elapsed time per iteration (ms): 12806.8 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 7.051956E+00 | loss scale: 16384.0 | grad norm: 0.431 | num zeros: 810034624.0 | params norm: 236.450 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       85/     200 | consumed samples:        43520 | elapsed time per iteration (ms): 7524.7 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 7.069146E+00 | loss scale: 16384.0 | grad norm: 0.808 | num zeros: 806465536.0 | params norm: 236.477 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       86/     200 | consumed samples:        44032 | elapsed time per iteration (ms): 8569.9 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 7.054150E+00 | loss scale: 16384.0 | grad norm: 0.356 | num zeros: 816469376.0 | params norm: 236.503 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       87/     200 | consumed samples:        44544 | elapsed time per iteration (ms): 7162.3 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 7.042572E+00 | loss scale: 16384.0 | grad norm: 0.537 | num zeros: 764153088.0 | params norm: 236.529 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       88/     200 | consumed samples:        45056 | elapsed time per iteration (ms): 8511.2 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 7.041190E+00 | loss scale: 16384.0 | grad norm: 0.582 | num zeros: 755483776.0 | params norm: 236.555 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       89/     200 | consumed samples:        45568 | elapsed time per iteration (ms): 9073.6 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 7.037238E+00 | loss scale: 16384.0 | grad norm: 0.729 | num zeros: 772544896.0 | params norm: 236.581 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       90/     200 | consumed samples:        46080 | elapsed time per iteration (ms): 8063.4 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 7.015278E+00 | loss scale: 16384.0 | grad norm: 0.450 | num zeros: 807378752.0 | params norm: 236.608 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       91/     200 | consumed samples:        46592 | elapsed time per iteration (ms): 11795.1 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 7.042008E+00 | loss scale: 16384.0 | grad norm: 0.903 | num zeros: 780832640.0 | params norm: 236.632 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       92/     200 | consumed samples:        47104 | elapsed time per iteration (ms): 8916.6 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 7.019560E+00 | loss scale: 16384.0 | grad norm: 0.499 | num zeros: 780268096.0 | params norm: 236.657 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       93/     200 | consumed samples:        47616 | elapsed time per iteration (ms): 7225.3 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 7.011820E+00 | loss scale: 16384.0 | grad norm: 0.533 | num zeros: 769503232.0 | params norm: 236.683 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       94/     200 | consumed samples:        48128 | elapsed time per iteration (ms): 7107.6 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 7.015119E+00 | loss scale: 16384.0 | grad norm: 0.294 | num zeros: 762536064.0 | params norm: 236.708 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       95/     200 | consumed samples:        48640 | elapsed time per iteration (ms): 7000.3 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 7.008676E+00 | loss scale: 16384.0 | grad norm: 0.427 | num zeros: 716954496.0 | params norm: 236.731 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       96/     200 | consumed samples:        49152 | elapsed time per iteration (ms): 7115.3 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 7.003490E+00 | loss scale: 16384.0 | grad norm: 0.328 | num zeros: 698200128.0 | params norm: 236.754 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       97/     200 | consumed samples:        49664 | elapsed time per iteration (ms): 7163.9 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 6.990672E+00 | loss scale: 16384.0 | grad norm: 0.445 | num zeros: 689906944.0 | params norm: 236.778 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       98/     200 | consumed samples:        50176 | elapsed time per iteration (ms): 8063.3 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 6.986319E+00 | loss scale: 16384.0 | grad norm: 0.371 | num zeros: 663712512.0 | params norm: 236.803 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration       99/     200 | consumed samples:        50688 | elapsed time per iteration (ms): 10027.2 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 6.981802E+00 | loss scale: 16384.0 | grad norm: 0.444 | num zeros: 642105152.0 | params norm: 236.827 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      100/     200 | consumed samples:        51200 | elapsed time per iteration (ms): 7951.4 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 6.982358E+00 | loss scale: 16384.0 | grad norm: 0.387 | num zeros: 561343616.0 | params norm: 236.851 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      101/     200 | consumed samples:        51712 | elapsed time per iteration (ms): 7348.9 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 6.990876E+00 | loss scale: 16384.0 | grad norm: 0.656 | num zeros: 579363584.0 | params norm: 236.876 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      102/     200 | consumed samples:        52224 | elapsed time per iteration (ms): 7659.1 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 6.977786E+00 | loss scale: 16384.0 | grad norm: 0.575 | num zeros: 584023936.0 | params norm: 236.901 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      103/     200 | consumed samples:        52736 | elapsed time per iteration (ms): 7976.9 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 6.962159E+00 | loss scale: 16384.0 | grad norm: 0.522 | num zeros: 575965440.0 | params norm: 236.926 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      104/     200 | consumed samples:        53248 | elapsed time per iteration (ms): 7402.7 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 6.966619E+00 | loss scale: 16384.0 | grad norm: 0.428 | num zeros: 628498368.0 | params norm: 236.952 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      105/     200 | consumed samples:        53760 | elapsed time per iteration (ms): 9083.9 | learning rate: 9.998E-05 | global batch size:   512 | lm loss: 6.963680E+00 | loss scale: 16384.0 | grad norm: 0.328 | num zeros: 596621760.0 | params norm: 236.977 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      106/     200 | consumed samples:        54272 | elapsed time per iteration (ms): 7317.2 | learning rate: 9.997E-05 | global batch size:   512 | lm loss: 6.956374E+00 | loss scale: 16384.0 | grad norm: 0.361 | num zeros: 603986944.0 | params norm: 237.002 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      107/     200 | consumed samples:        54784 | elapsed time per iteration (ms): 7461.8 | learning rate: 9.997E-05 | global batch size:   512 | lm loss: 6.958918E+00 | loss scale: 16384.0 | grad norm: 0.396 | num zeros: 561101952.0 | params norm: 237.026 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      108/     200 | consumed samples:        55296 | elapsed time per iteration (ms): 7720.9 | learning rate: 9.997E-05 | global batch size:   512 | lm loss: 6.941510E+00 | loss scale: 16384.0 | grad norm: 0.335 | num zeros: 602294912.0 | params norm: 237.051 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      109/     200 | consumed samples:        55808 | elapsed time per iteration (ms): 9199.6 | learning rate: 9.997E-05 | global batch size:   512 | lm loss: 6.937350E+00 | loss scale: 16384.0 | grad norm: 0.405 | num zeros: 568833856.0 | params norm: 237.076 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      110/     200 | consumed samples:        56320 | elapsed time per iteration (ms): 8096.7 | learning rate: 9.997E-05 | global batch size:   512 | lm loss: 6.933399E+00 | loss scale: 16384.0 | grad norm: 0.494 | num zeros: 540081536.0 | params norm: 237.102 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      111/     200 | consumed samples:        56832 | elapsed time per iteration (ms): 6557.0 | learning rate: 9.997E-05 | global batch size:   512 | lm loss: 7.009811E+00 | loss scale: 16384.0 | grad norm: 1.422 | num zeros: 542619264.0 | params norm: 237.129 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      112/     200 | consumed samples:        57344 | elapsed time per iteration (ms): 6770.5 | learning rate: 9.997E-05 | global batch size:   512 | lm loss: 6.964054E+00 | loss scale: 16384.0 | grad norm: 0.915 | num zeros: 572187392.0 | params norm: 237.157 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      113/     200 | consumed samples:        57856 | elapsed time per iteration (ms): 7751.6 | learning rate: 9.997E-05 | global batch size:   512 | lm loss: 6.954733E+00 | loss scale: 16384.0 | grad norm: 0.958 | num zeros: 596068224.0 | params norm: 237.182 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      114/     200 | consumed samples:        58368 | elapsed time per iteration (ms): 6577.9 | learning rate: 9.997E-05 | global batch size:   512 | lm loss: 6.941258E+00 | loss scale: 16384.0 | grad norm: 0.574 | num zeros: 609908864.0 | params norm: 237.208 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      115/     200 | consumed samples:        58880 | elapsed time per iteration (ms): 8330.5 | learning rate: 9.997E-05 | global batch size:   512 | lm loss: 6.949462E+00 | loss scale: 16384.0 | grad norm: 0.722 | num zeros: 598523136.0 | params norm: 237.236 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      116/     200 | consumed samples:        59392 | elapsed time per iteration (ms): 10607.3 | learning rate: 9.997E-05 | global batch size:   512 | lm loss: 6.923405E+00 | loss scale: 16384.0 | grad norm: 0.719 | num zeros: 567980672.0 | params norm: 237.265 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      117/     200 | consumed samples:        59904 | elapsed time per iteration (ms): 7442.9 | learning rate: 9.997E-05 | global batch size:   512 | lm loss: 6.908653E+00 | loss scale: 16384.0 | grad norm: 0.439 | num zeros: 633264832.0 | params norm: 237.294 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      118/     200 | consumed samples:        60416 | elapsed time per iteration (ms): 7080.3 | learning rate: 9.997E-05 | global batch size:   512 | lm loss: 6.918469E+00 | loss scale: 16384.0 | grad norm: 0.766 | num zeros: 575985216.0 | params norm: 237.321 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      119/     200 | consumed samples:        60928 | elapsed time per iteration (ms): 6566.1 | learning rate: 9.997E-05 | global batch size:   512 | lm loss: 6.895629E+00 | loss scale: 16384.0 | grad norm: 0.636 | num zeros: 586554176.0 | params norm: 237.347 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      120/     200 | consumed samples:        61440 | elapsed time per iteration (ms): 7760.1 | learning rate: 9.997E-05 | global batch size:   512 | lm loss: 6.888483E+00 | loss scale: 16384.0 | grad norm: 0.474 | num zeros: 550420032.0 | params norm: 237.375 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      121/     200 | consumed samples:        61952 | elapsed time per iteration (ms): 6359.1 | learning rate: 9.997E-05 | global batch size:   512 | lm loss: 6.875435E+00 | loss scale: 16384.0 | grad norm: 0.595 | num zeros: 554679872.0 | params norm: 237.405 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      122/     200 | consumed samples:        62464 | elapsed time per iteration (ms): 6970.6 | learning rate: 9.997E-05 | global batch size:   512 | lm loss: 6.880463E+00 | loss scale: 16384.0 | grad norm: 0.374 | num zeros: 541999552.0 | params norm: 237.435 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      123/     200 | consumed samples:        62976 | elapsed time per iteration (ms): 7267.0 | learning rate: 9.997E-05 | global batch size:   512 | lm loss: 6.858570E+00 | loss scale: 16384.0 | grad norm: 0.363 | num zeros: 564287680.0 | params norm: 237.466 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      124/     200 | consumed samples:        63488 | elapsed time per iteration (ms): 7563.9 | learning rate: 9.996E-05 | global batch size:   512 | lm loss: 6.870937E+00 | loss scale: 16384.0 | grad norm: 0.535 | num zeros: 568682112.0 | params norm: 237.497 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      125/     200 | consumed samples:        64000 | elapsed time per iteration (ms): 6504.9 | learning rate: 9.996E-05 | global batch size:   512 | lm loss: 6.853106E+00 | loss scale: 16384.0 | grad norm: 0.333 | num zeros: 597092864.0 | params norm: 237.528 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      126/     200 | consumed samples:        64512 | elapsed time per iteration (ms): 6847.6 | learning rate: 9.996E-05 | global batch size:   512 | lm loss: 6.844886E+00 | loss scale: 16384.0 | grad norm: 0.375 | num zeros: 549650944.0 | params norm: 237.559 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      127/     200 | consumed samples:        65024 | elapsed time per iteration (ms): 6596.7 | learning rate: 9.996E-05 | global batch size:   512 | lm loss: 6.839857E+00 | loss scale: 16384.0 | grad norm: 0.436 | num zeros: 537657472.0 | params norm: 237.592 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      128/     200 | consumed samples:        65536 | elapsed time per iteration (ms): 6315.2 | learning rate: 9.996E-05 | global batch size:   512 | lm loss: 6.831185E+00 | loss scale: 16384.0 | grad norm: 0.287 | num zeros: 574861184.0 | params norm: 237.627 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      129/     200 | consumed samples:        66048 | elapsed time per iteration (ms): 7135.5 | learning rate: 9.996E-05 | global batch size:   512 | lm loss: 6.824619E+00 | loss scale: 16384.0 | grad norm: 0.349 | num zeros: 565634944.0 | params norm: 237.660 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      130/     200 | consumed samples:        66560 | elapsed time per iteration (ms): 6816.1 | learning rate: 9.996E-05 | global batch size:   512 | lm loss: 6.821040E+00 | loss scale: 16384.0 | grad norm: 0.310 | num zeros: 602096896.0 | params norm: 237.694 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      131/     200 | consumed samples:        67072 | elapsed time per iteration (ms): 11752.5 | learning rate: 9.996E-05 | global batch size:   512 | lm loss: 6.824080E+00 | loss scale: 16384.0 | grad norm: 0.478 | num zeros: 581394240.0 | params norm: 237.729 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      132/     200 | consumed samples:        67584 | elapsed time per iteration (ms): 13782.3 | learning rate: 9.996E-05 | global batch size:   512 | lm loss: 6.802636E+00 | loss scale: 16384.0 | grad norm: 0.535 | num zeros: 558404800.0 | params norm: 237.763 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      133/     200 | consumed samples:        68096 | elapsed time per iteration (ms): 13539.1 | learning rate: 9.996E-05 | global batch size:   512 | lm loss: 6.807320E+00 | loss scale: 16384.0 | grad norm: 0.900 | num zeros: 472542880.0 | params norm: 237.800 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      134/     200 | consumed samples:        68608 | elapsed time per iteration (ms): 6051.4 | learning rate: 9.996E-05 | global batch size:   512 | lm loss: 6.813866E+00 | loss scale: 16384.0 | grad norm: 0.804 | num zeros: 507398080.0 | params norm: 237.834 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      135/     200 | consumed samples:        69120 | elapsed time per iteration (ms): 7064.8 | learning rate: 9.996E-05 | global batch size:   512 | lm loss: 6.803695E+00 | loss scale: 16384.0 | grad norm: 0.561 | num zeros: 513814976.0 | params norm: 237.870 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      136/     200 | consumed samples:        69632 | elapsed time per iteration (ms): 9359.0 | learning rate: 9.996E-05 | global batch size:   512 | lm loss: 6.801886E+00 | loss scale: 16384.0 | grad norm: 0.503 | num zeros: 539348352.0 | params norm: 237.904 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      137/     200 | consumed samples:        70144 | elapsed time per iteration (ms): 6882.3 | learning rate: 9.996E-05 | global batch size:   512 | lm loss: 6.782258E+00 | loss scale: 16384.0 | grad norm: 0.356 | num zeros: 516626080.0 | params norm: 237.939 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      138/     200 | consumed samples:        70656 | elapsed time per iteration (ms): 6566.9 | learning rate: 9.996E-05 | global batch size:   512 | lm loss: 6.782197E+00 | loss scale: 16384.0 | grad norm: 0.531 | num zeros: 473215072.0 | params norm: 237.974 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      139/     200 | consumed samples:        71168 | elapsed time per iteration (ms): 9348.0 | learning rate: 9.996E-05 | global batch size:   512 | lm loss: 6.770554E+00 | loss scale: 16384.0 | grad norm: 0.389 | num zeros: 460862624.0 | params norm: 238.011 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      140/     200 | consumed samples:        71680 | elapsed time per iteration (ms): 7468.6 | learning rate: 9.995E-05 | global batch size:   512 | lm loss: 6.773888E+00 | loss scale: 16384.0 | grad norm: 0.393 | num zeros: 517229696.0 | params norm: 238.046 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      141/     200 | consumed samples:        72192 | elapsed time per iteration (ms): 9409.7 | learning rate: 9.995E-05 | global batch size:   512 | lm loss: 6.754232E+00 | loss scale: 16384.0 | grad norm: 0.326 | num zeros: 507757952.0 | params norm: 238.083 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      142/     200 | consumed samples:        72704 | elapsed time per iteration (ms): 9124.1 | learning rate: 9.995E-05 | global batch size:   512 | lm loss: 6.759606E+00 | loss scale: 16384.0 | grad norm: 0.401 | num zeros: 486884416.0 | params norm: 238.120 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      143/     200 | consumed samples:        73216 | elapsed time per iteration (ms): 6073.9 | learning rate: 9.995E-05 | global batch size:   512 | lm loss: 6.748364E+00 | loss scale: 16384.0 | grad norm: 0.331 | num zeros: 488324448.0 | params norm: 238.158 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      144/     200 | consumed samples:        73728 | elapsed time per iteration (ms): 6028.5 | learning rate: 9.995E-05 | global batch size:   512 | lm loss: 6.744422E+00 | loss scale: 16384.0 | grad norm: 0.296 | num zeros: 475006752.0 | params norm: 238.197 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      145/     200 | consumed samples:        74240 | elapsed time per iteration (ms): 5989.7 | learning rate: 9.995E-05 | global batch size:   512 | lm loss: 6.743772E+00 | loss scale: 16384.0 | grad norm: 0.304 | num zeros: 454092672.0 | params norm: 238.235 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      146/     200 | consumed samples:        74752 | elapsed time per iteration (ms): 6936.9 | learning rate: 9.995E-05 | global batch size:   512 | lm loss: 6.741058E+00 | loss scale: 16384.0 | grad norm: 0.354 | num zeros: 466543936.0 | params norm: 238.274 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      147/     200 | consumed samples:        75264 | elapsed time per iteration (ms): 5932.7 | learning rate: 9.995E-05 | global batch size:   512 | lm loss: 6.750768E+00 | loss scale: 16384.0 | grad norm: 0.319 | num zeros: 453905408.0 | params norm: 238.314 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      148/     200 | consumed samples:        75776 | elapsed time per iteration (ms): 6893.7 | learning rate: 9.995E-05 | global batch size:   512 | lm loss: 6.724390E+00 | loss scale: 16384.0 | grad norm: 0.305 | num zeros: 458359424.0 | params norm: 238.353 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      149/     200 | consumed samples:        76288 | elapsed time per iteration (ms): 7376.1 | learning rate: 9.995E-05 | global batch size:   512 | lm loss: 6.735779E+00 | loss scale: 16384.0 | grad norm: 0.338 | num zeros: 453503936.0 | params norm: 238.391 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      150/     200 | consumed samples:        76800 | elapsed time per iteration (ms): 6387.8 | learning rate: 9.995E-05 | global batch size:   512 | lm loss: 6.724003E+00 | loss scale: 16384.0 | grad norm: 0.429 | num zeros: 447494912.0 | params norm: 238.431 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      151/     200 | consumed samples:        77312 | elapsed time per iteration (ms): 6278.4 | learning rate: 9.995E-05 | global batch size:   512 | lm loss: 6.719951E+00 | loss scale: 16384.0 | grad norm: 0.544 | num zeros: 432948544.0 | params norm: 238.471 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      152/     200 | consumed samples:        77824 | elapsed time per iteration (ms): 7191.1 | learning rate: 9.995E-05 | global batch size:   512 | lm loss: 6.725025E+00 | loss scale: 16384.0 | grad norm: 0.868 | num zeros: 418862272.0 | params norm: 238.510 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      153/     200 | consumed samples:        78336 | elapsed time per iteration (ms): 5994.6 | learning rate: 9.995E-05 | global batch size:   512 | lm loss: 6.732991E+00 | loss scale: 16384.0 | grad norm: 1.127 | num zeros: 401694688.0 | params norm: 238.549 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      154/     200 | consumed samples:        78848 | elapsed time per iteration (ms): 5864.4 | learning rate: 9.995E-05 | global batch size:   512 | lm loss: 6.702382E+00 | loss scale: 16384.0 | grad norm: 0.343 | num zeros: 399334080.0 | params norm: 238.588 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      155/     200 | consumed samples:        79360 | elapsed time per iteration (ms): 9020.0 | learning rate: 9.994E-05 | global batch size:   512 | lm loss: 6.701983E+00 | loss scale: 16384.0 | grad norm: 0.706 | num zeros: 410722592.0 | params norm: 238.627 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      156/     200 | consumed samples:        79872 | elapsed time per iteration (ms): 5812.8 | learning rate: 9.994E-05 | global batch size:   512 | lm loss: 6.708075E+00 | loss scale: 16384.0 | grad norm: 0.754 | num zeros: 406032832.0 | params norm: 238.669 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      157/     200 | consumed samples:        80384 | elapsed time per iteration (ms): 6203.3 | learning rate: 9.994E-05 | global batch size:   512 | lm loss: 6.692449E+00 | loss scale: 16384.0 | grad norm: 0.383 | num zeros: 398404608.0 | params norm: 238.708 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      158/     200 | consumed samples:        80896 | elapsed time per iteration (ms): 5718.9 | learning rate: 9.994E-05 | global batch size:   512 | lm loss: 6.690764E+00 | loss scale: 16384.0 | grad norm: 0.634 | num zeros: 418993856.0 | params norm: 238.746 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      159/     200 | consumed samples:        81408 | elapsed time per iteration (ms): 6336.9 | learning rate: 9.994E-05 | global batch size:   512 | lm loss: 6.702937E+00 | loss scale: 16384.0 | grad norm: 0.684 | num zeros: 403479584.0 | params norm: 238.784 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      160/     200 | consumed samples:        81920 | elapsed time per iteration (ms): 6102.9 | learning rate: 9.994E-05 | global batch size:   512 | lm loss: 6.697803E+00 | loss scale: 16384.0 | grad norm: 0.518 | num zeros: 415018208.0 | params norm: 238.824 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      161/     200 | consumed samples:        82432 | elapsed time per iteration (ms): 5942.6 | learning rate: 9.994E-05 | global batch size:   512 | lm loss: 6.694146E+00 | loss scale: 16384.0 | grad norm: 0.704 | num zeros: 459580096.0 | params norm: 238.864 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      162/     200 | consumed samples:        82944 | elapsed time per iteration (ms): 6965.2 | learning rate: 9.994E-05 | global batch size:   512 | lm loss: 6.691476E+00 | loss scale: 16384.0 | grad norm: 0.534 | num zeros: 421041216.0 | params norm: 238.902 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      163/     200 | consumed samples:        83456 | elapsed time per iteration (ms): 5633.9 | learning rate: 9.994E-05 | global batch size:   512 | lm loss: 6.676128E+00 | loss scale: 16384.0 | grad norm: 0.478 | num zeros: 445092992.0 | params norm: 238.941 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      164/     200 | consumed samples:        83968 | elapsed time per iteration (ms): 5489.1 | learning rate: 9.994E-05 | global batch size:   512 | lm loss: 6.680874E+00 | loss scale: 16384.0 | grad norm: 0.605 | num zeros: 441698816.0 | params norm: 238.978 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      165/     200 | consumed samples:        84480 | elapsed time per iteration (ms): 6289.7 | learning rate: 9.994E-05 | global batch size:   512 | lm loss: 6.671352E+00 | loss scale: 16384.0 | grad norm: 0.566 | num zeros: 423760896.0 | params norm: 239.016 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      166/     200 | consumed samples:        84992 | elapsed time per iteration (ms): 6430.6 | learning rate: 9.994E-05 | global batch size:   512 | lm loss: 6.673142E+00 | loss scale: 16384.0 | grad norm: 0.694 | num zeros: 439716800.0 | params norm: 239.054 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      167/     200 | consumed samples:        85504 | elapsed time per iteration (ms): 5582.2 | learning rate: 9.994E-05 | global batch size:   512 | lm loss: 6.665529E+00 | loss scale: 16384.0 | grad norm: 0.577 | num zeros: 476863424.0 | params norm: 239.091 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      168/     200 | consumed samples:        86016 | elapsed time per iteration (ms): 5232.5 | learning rate: 9.993E-05 | global batch size:   512 | lm loss: 6.661407E+00 | loss scale: 16384.0 | grad norm: 0.628 | num zeros: 435547616.0 | params norm: 239.128 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      169/     200 | consumed samples:        86528 | elapsed time per iteration (ms): 5579.5 | learning rate: 9.993E-05 | global batch size:   512 | lm loss: 6.655568E+00 | loss scale: 16384.0 | grad norm: 0.688 | num zeros: 512209984.0 | params norm: 239.165 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      170/     200 | consumed samples:        87040 | elapsed time per iteration (ms): 5248.4 | learning rate: 9.993E-05 | global batch size:   512 | lm loss: 6.645072E+00 | loss scale: 16384.0 | grad norm: 0.637 | num zeros: 495879104.0 | params norm: 239.203 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      171/     200 | consumed samples:        87552 | elapsed time per iteration (ms): 5222.2 | learning rate: 9.993E-05 | global batch size:   512 | lm loss: 6.641257E+00 | loss scale: 16384.0 | grad norm: 0.459 | num zeros: 476646880.0 | params norm: 239.241 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      172/     200 | consumed samples:        88064 | elapsed time per iteration (ms): 5926.1 | learning rate: 9.993E-05 | global batch size:   512 | lm loss: 6.649146E+00 | loss scale: 16384.0 | grad norm: 0.578 | num zeros: 509122368.0 | params norm: 239.278 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      173/     200 | consumed samples:        88576 | elapsed time per iteration (ms): 5528.2 | learning rate: 9.993E-05 | global batch size:   512 | lm loss: 6.634540E+00 | loss scale: 16384.0 | grad norm: 0.342 | num zeros: 504485376.0 | params norm: 239.316 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      174/     200 | consumed samples:        89088 | elapsed time per iteration (ms): 5726.2 | learning rate: 9.993E-05 | global batch size:   512 | lm loss: 6.621857E+00 | loss scale: 16384.0 | grad norm: 0.505 | num zeros: 521538464.0 | params norm: 239.353 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      175/     200 | consumed samples:        89600 | elapsed time per iteration (ms): 5820.1 | learning rate: 9.993E-05 | global batch size:   512 | lm loss: 6.628326E+00 | loss scale: 16384.0 | grad norm: 0.438 | num zeros: 506196672.0 | params norm: 239.391 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      176/     200 | consumed samples:        90112 | elapsed time per iteration (ms): 6598.2 | learning rate: 9.993E-05 | global batch size:   512 | lm loss: 6.631627E+00 | loss scale: 16384.0 | grad norm: 0.685 | num zeros: 507546240.0 | params norm: 239.428 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      177/     200 | consumed samples:        90624 | elapsed time per iteration (ms): 5222.9 | learning rate: 9.993E-05 | global batch size:   512 | lm loss: 6.623775E+00 | loss scale: 16384.0 | grad norm: 0.697 | num zeros: 490609408.0 | params norm: 239.465 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      178/     200 | consumed samples:        91136 | elapsed time per iteration (ms): 7799.4 | learning rate: 9.993E-05 | global batch size:   512 | lm loss: 6.613970E+00 | loss scale: 16384.0 | grad norm: 0.662 | num zeros: 520628480.0 | params norm: 239.504 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      179/     200 | consumed samples:        91648 | elapsed time per iteration (ms): 5775.6 | learning rate: 9.993E-05 | global batch size:   512 | lm loss: 6.615075E+00 | loss scale: 16384.0 | grad norm: 0.380 | num zeros: 566379264.0 | params norm: 239.542 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      180/     200 | consumed samples:        92160 | elapsed time per iteration (ms): 5697.7 | learning rate: 9.992E-05 | global batch size:   512 | lm loss: 6.598732E+00 | loss scale: 16384.0 | grad norm: 0.506 | num zeros: 510989120.0 | params norm: 239.580 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      181/     200 | consumed samples:        92672 | elapsed time per iteration (ms): 6341.9 | learning rate: 9.992E-05 | global batch size:   512 | lm loss: 6.612623E+00 | loss scale: 16384.0 | grad norm: 0.675 | num zeros: 510019968.0 | params norm: 239.619 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      182/     200 | consumed samples:        93184 | elapsed time per iteration (ms): 5988.2 | learning rate: 9.992E-05 | global batch size:   512 | lm loss: 6.613385E+00 | loss scale: 16384.0 | grad norm: 0.601 | num zeros: 529884992.0 | params norm: 239.656 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      183/     200 | consumed samples:        93696 | elapsed time per iteration (ms): 8844.9 | learning rate: 9.992E-05 | global batch size:   512 | lm loss: 6.610281E+00 | loss scale: 16384.0 | grad norm: 0.503 | num zeros: 507172544.0 | params norm: 239.694 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      184/     200 | consumed samples:        94208 | elapsed time per iteration (ms): 5454.6 | learning rate: 9.992E-05 | global batch size:   512 | lm loss: 6.591727E+00 | loss scale: 16384.0 | grad norm: 0.710 | num zeros: 501773056.0 | params norm: 239.733 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      185/     200 | consumed samples:        94720 | elapsed time per iteration (ms): 7319.8 | learning rate: 9.992E-05 | global batch size:   512 | lm loss: 6.594502E+00 | loss scale: 16384.0 | grad norm: 0.729 | num zeros: 498703840.0 | params norm: 239.772 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      186/     200 | consumed samples:        95232 | elapsed time per iteration (ms): 5539.2 | learning rate: 9.992E-05 | global batch size:   512 | lm loss: 6.586481E+00 | loss scale: 16384.0 | grad norm: 0.472 | num zeros: 508340608.0 | params norm: 239.810 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      187/     200 | consumed samples:        95744 | elapsed time per iteration (ms): 5300.8 | learning rate: 9.992E-05 | global batch size:   512 | lm loss: 6.589604E+00 | loss scale: 16384.0 | grad norm: 0.633 | num zeros: 504232352.0 | params norm: 239.848 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      188/     200 | consumed samples:        96256 | elapsed time per iteration (ms): 5416.6 | learning rate: 9.992E-05 | global batch size:   512 | lm loss: 6.579853E+00 | loss scale: 16384.0 | grad norm: 0.631 | num zeros: 473719232.0 | params norm: 239.888 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      189/     200 | consumed samples:        96768 | elapsed time per iteration (ms): 5724.5 | learning rate: 9.992E-05 | global batch size:   512 | lm loss: 6.581757E+00 | loss scale: 16384.0 | grad norm: 0.582 | num zeros: 475534400.0 | params norm: 239.929 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      190/     200 | consumed samples:        97280 | elapsed time per iteration (ms): 7532.0 | learning rate: 9.992E-05 | global batch size:   512 | lm loss: 6.581748E+00 | loss scale: 16384.0 | grad norm: 0.730 | num zeros: 438181536.0 | params norm: 239.970 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      191/     200 | consumed samples:        97792 | elapsed time per iteration (ms): 5323.3 | learning rate: 9.991E-05 | global batch size:   512 | lm loss: 6.591938E+00 | loss scale: 16384.0 | grad norm: 1.394 | num zeros: 436093792.0 | params norm: 240.010 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      192/     200 | consumed samples:        98304 | elapsed time per iteration (ms): 5871.2 | learning rate: 9.991E-05 | global batch size:   512 | lm loss: 6.563737E+00 | loss scale: 16384.0 | grad norm: 0.551 | num zeros: 456350976.0 | params norm: 240.050 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      193/     200 | consumed samples:        98816 | elapsed time per iteration (ms): 5102.1 | learning rate: 9.991E-05 | global batch size:   512 | lm loss: 6.559257E+00 | loss scale: 16384.0 | grad norm: 0.804 | num zeros: 469148288.0 | params norm: 240.091 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      194/     200 | consumed samples:        99328 | elapsed time per iteration (ms): 6563.4 | learning rate: 9.991E-05 | global batch size:   512 | lm loss: 6.553432E+00 | loss scale: 16384.0 | grad norm: 0.702 | num zeros: 451785472.0 | params norm: 240.131 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      195/     200 | consumed samples:        99840 | elapsed time per iteration (ms): 5259.0 | learning rate: 9.991E-05 | global batch size:   512 | lm loss: 6.558414E+00 | loss scale: 16384.0 | grad norm: 0.650 | num zeros: 464604992.0 | params norm: 240.171 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      196/     200 | consumed samples:       100352 | elapsed time per iteration (ms): 7977.9 | learning rate: 9.991E-05 | global batch size:   512 | lm loss: 6.545784E+00 | loss scale: 16384.0 | grad norm: 0.576 | num zeros: 456980224.0 | params norm: 240.210 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      197/     200 | consumed samples:       100864 | elapsed time per iteration (ms): 5339.8 | learning rate: 9.991E-05 | global batch size:   512 | lm loss: 6.567218E+00 | loss scale: 16384.0 | grad norm: 0.608 | num zeros: 448921664.0 | params norm: 240.249 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      198/     200 | consumed samples:       101376 | elapsed time per iteration (ms): 6267.3 | learning rate: 9.991E-05 | global batch size:   512 | lm loss: 6.546043E+00 | loss scale: 16384.0 | grad norm: 0.994 | num zeros: 461517312.0 | params norm: 240.290 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      199/     200 | consumed samples:       101888 | elapsed time per iteration (ms): 5646.3 | learning rate: 9.991E-05 | global batch size:   512 | lm loss: 6.540544E+00 | loss scale: 16384.0 | grad norm: 0.410 | num zeros: 452858688.0 | params norm: 240.332 | number of skipped iterations:   0 | number of nan iterations:   0 |
+ iteration      200/     200 | consumed samples:       102400 | elapsed time per iteration (ms): 5133.7 | learning rate: 9.991E-05 | global batch size:   512 | lm loss: 6.541279E+00 | loss scale: 16384.0 | grad norm: 0.594 | num zeros: 436654368.0 | params norm: 240.374 | number of skipped iterations:   0 | number of nan iterations:   0 |
+[after training is done] datetime: 2023-01-04 21:29:57 

@@ -1,0 +1,1543 @@
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 0/32
+[32m[2023-01-05 04:18:53 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 392)[0m: INFO Full config saved to /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default/config.json
+[32m[2023-01-05 04:18:53 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 395)[0m: INFO AMP_ENABLE: true
+AMP_OPT_LEVEL: ''
+AUG:
+  AUTO_AUGMENT: rand-m9-mstd0.5-inc1
+  COLOR_JITTER: 0.4
+  CUTMIX: 1.0
+  CUTMIX_MINMAX: null
+  MIXUP: 0.8
+  MIXUP_MODE: batch
+  MIXUP_PROB: 1.0
+  MIXUP_SWITCH_PROB: 0.5
+  RECOUNT: 1
+  REMODE: pixel
+  REPROB: 0.25
+BASE:
+- ''
+DATA:
+  BATCH_SIZE: 8
+  CACHE_MODE: part
+  DATASET: imagenet22K
+  DATA_PATH: /mnt/znvme/dataset/imagenet22k
+  IMG_SIZE: 192
+  INTERPOLATION: bicubic
+  NUM_WORKERS: 8
+  PIN_MEMORY: true
+  ZIP_MODE: false
+EVAL_MODE: false
+FUSED_LAYERNORM: false
+FUSED_WINDOW_PROCESS: true
+LOCAL_RANK: 0
+MODEL:
+  DROP_PATH_RATE: 0.3
+  DROP_RATE: 0.0
+  LABEL_SMOOTHING: 0.1
+  NAME: swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k
+  NUM_CLASSES: 1000
+  PRETRAINED: ''
+  RESUME: ''
+  SWIN:
+    APE: false
+    DEPTHS:
+    - 2
+    - 2
+    - 6
+    - 2
+    EMBED_DIM: 96
+    IN_CHANS: 3
+    MLP_RATIO: 4.0
+    NUM_HEADS:
+    - 3
+    - 6
+    - 12
+    - 24
+    PATCH_NORM: true
+    PATCH_SIZE: 4
+    QKV_BIAS: true
+    QK_SCALE: null
+    WINDOW_SIZE: 7
+  SWINV2:
+    APE: false
+    DEPTHS:
+    - 2
+    - 2
+    - 6
+    - 2
+    EMBED_DIM: 96
+    IN_CHANS: 3
+    MLP_RATIO: 4.0
+    NUM_HEADS:
+    - 3
+    - 6
+    - 12
+    - 24
+    PATCH_NORM: true
+    PATCH_SIZE: 4
+    PRETRAINED_WINDOW_SIZES:
+    - 0
+    - 0
+    - 0
+    - 0
+    QKV_BIAS: true
+    WINDOW_SIZE: 7
+  SWIN_MLP:
+    APE: false
+    DEPTHS:
+    - 2
+    - 2
+    - 6
+    - 2
+    EMBED_DIM: 96
+    IN_CHANS: 3
+    MLP_RATIO: 4.0
+    NUM_HEADS:
+    - 3
+    - 6
+    - 12
+    - 24
+    PATCH_NORM: true
+    PATCH_SIZE: 4
+    WINDOW_SIZE: 7
+  SWIN_MOE:
+    APE: false
+    AUX_LOSS_WEIGHT: 0.01
+    CAPACITY_FACTOR: 4.8
+    COSINE_ROUTER: false
+    COSINE_ROUTER_DIM: 256
+    COSINE_ROUTER_INIT_T: 0.5
+    DEPTHS:
+    - 2
+    - 2
+    - 18
+    - 2
+    EMBED_DIM: 128
+    GATE_NOISE: 1.0
+    INIT_STD: 0.005
+    IN_CHANS: 3
+    IS_GSHARD_LOSS: true
+    MLP_FC2_BIAS: false
+    MLP_RATIO: 4.0
+    MOE_BLOCKS:
+    - - -1
+    - - -1
+    - - 1
+      - 3
+      - 5
+      - 7
+      - 9
+      - 11
+      - 13
+      - 15
+      - 17
+    - - 1
+    MOE_DROP: 0.1
+    NORMALIZE_GATE: false
+    NUM_HEADS:
+    - 4
+    - 8
+    - 16
+    - 32
+    NUM_LOCAL_EXPERTS: 1
+    PATCH_NORM: true
+    PATCH_SIZE: 4
+    PRETRAINED_WINDOW_SIZES:
+    - 0
+    - 0
+    - 0
+    - 0
+    QKV_BIAS: true
+    QK_SCALE: null
+    TOP_VALUE: 2
+    USE_BPR: true
+    WINDOW_SIZE: 12
+  TYPE: swin_tutelmoe
+OUTPUT: /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default
+PRINT_FREQ: 1
+SAVE_FREQ: 1
+SEED: 0
+TAG: default
+TEST:
+  CROP: true
+  SEQUENTIAL: false
+  SHUFFLE: true
+THROUGHPUT_MODE: false
+TRAIN:
+  ACCUMULATION_STEPS: 16
+  AUTO_RESUME: true
+  BASE_LR: 0.001
+  CHECKPOINT_MODE: full
+  CLIP_GRAD: 3.0
+  EPOCHS: 90
+  LR_SCHEDULER:
+    DECAY_EPOCHS: 30
+    DECAY_RATE: 0.1
+    NAME: cosine
+  MIN_LR: 1.0e-05
+  MOE:
+    SAVE_MASTER: false
+  OPTIMIZER:
+    BETAS:
+    - 0.9
+    - 0.999
+    EPS: 1.0e-08
+    MOMENTUM: 0.9
+    NAME: adamw
+  START_EPOCH: 0
+  USE_CHECKPOINT: false
+  WARMUP_EPOCHS: 0
+  WARMUP_LR: 1.0e-06
+  WEIGHT_DECAY: 0.1
+
+[32m[2023-01-05 04:18:53 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 396)[0m: INFO {"cfg": "configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml", "opts": null, "batch_size": 8, "data_path": "/mnt/znvme/dataset/imagenet22k", "zip": false, "cache_mode": "part", "pretrained": null, "resume": null, "accumulation_steps": 16, "use_checkpoint": false, "checkpoint_mode": "full", "disable_amp": false, "amp_opt_level": null, "output": "/home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8", "tag": null, "eval": false, "throughput": false, "local_rank": 0, "fused_window_process": true, "fused_layernorm": false, "optim": null}
+local rank 0 / global rank 0 successfully build train dataset
+local rank 0 / global rank 0 successfully build val dataset
+[32m[2023-01-05 04:19:08 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 94)[0m: INFO Creating model:swin_tutelmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 96)[0m: INFO SwinTransformerTutelMoE(
+  (patch_embed): PatchEmbed(
+    (proj): Conv2d(3, 128, kernel_size=(4, 4), stride=(4, 4))
+    (norm): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+  )
+  (pos_drop): Dropout(p=0.0, inplace=False)
+  (layers): ModuleList(
+    (0): BasicLayer(
+      dim=128, input_resolution=(48, 48), depth=2
+      (blocks): ModuleList(
+        (0): SwinTransformerBlock(
+          dim=128, input_resolution=(48, 48), num_heads=4, window_size=12, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=128, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=4
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=4, bias=False)
+            )
+            (qkv): Linear(in_features=128, out_features=384, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=128, out_features=128, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): Identity()
+          (norm2): TimerModule(
+            (model): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): Mlp(
+            (fc1): Linear(in_features=128, out_features=512, bias=True)
+            (act): GELU(approximate=none)
+            (fc2): Linear(in_features=512, out_features=128, bias=False)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): SwinTransformerBlock(
+          dim=128, input_resolution=(48, 48), num_heads=4, window_size=12, shift_size=6, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=128, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=4
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=4, bias=False)
+            )
+            (qkv): Linear(in_features=128, out_features=384, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=128, out_features=128, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): Mlp(
+            (fc1): Linear(in_features=128, out_features=512, bias=True)
+            (act): GELU(approximate=none)
+            (fc2): Linear(in_features=512, out_features=128, bias=False)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (downsample): PatchMerging(
+        input_resolution=(48, 48), dim=128
+        (reduction): Linear(in_features=512, out_features=256, bias=False)
+        (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+      )
+    )
+    (1): BasicLayer(
+      dim=256, input_resolution=(24, 24), depth=2
+      (blocks): ModuleList(
+        (0): SwinTransformerBlock(
+          dim=256, input_resolution=(24, 24), num_heads=8, window_size=12, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=256, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=8
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=8, bias=False)
+            )
+            (qkv): Linear(in_features=256, out_features=768, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=256, out_features=256, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): Mlp(
+            (fc1): Linear(in_features=256, out_features=1024, bias=True)
+            (act): GELU(approximate=none)
+            (fc2): Linear(in_features=1024, out_features=256, bias=False)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): SwinTransformerBlock(
+          dim=256, input_resolution=(24, 24), num_heads=8, window_size=12, shift_size=6, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=256, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=8
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=8, bias=False)
+            )
+            (qkv): Linear(in_features=256, out_features=768, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=256, out_features=256, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): Mlp(
+            (fc1): Linear(in_features=256, out_features=1024, bias=True)
+            (act): GELU(approximate=none)
+            (fc2): Linear(in_features=1024, out_features=256, bias=False)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (downsample): PatchMerging(
+        input_resolution=(24, 24), dim=256
+        (reduction): Linear(in_features=1024, out_features=512, bias=False)
+        (norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+      )
+    )
+    (2): BasicLayer(
+      dim=512, input_resolution=(12, 12), depth=18
+      (blocks): ModuleList(
+        (0): SwinTransformerBlock(
+          dim=512, input_resolution=(12, 12), num_heads=16, window_size=12, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=512, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=16
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=16, bias=False)
+            )
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU(approximate=none)
+            (fc2): Linear(in_features=2048, out_features=512, bias=False)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): SwinTransformerBlock(
+          dim=512, input_resolution=(12, 12), num_heads=16, window_size=12, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=512, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=16
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=16, bias=False)
+            )
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): MoEMlp(
+            [Statistics-0] param count for MoE, in_features = 512, hidden_features = 2048, num_local_experts = 1, top_value = 2, cosine_router=False normalize_gate=False, use_bpr = True
+            (_dropout): Dropout(p=0.1, inplace=False)
+            (_moe_layer): MOELayer(
+              Top-K(s) = ['k=2, noise=1.0'], Total-Experts = 32 [managed by 32 device(s)],
+              (experts): FusedExpertsNetwork(model_dim=512, hidden_size=2048, output_dim=512, local_experts=1)
+              (gates): ModuleList(
+                (0): LinearTopKGate(
+                  (wg): Linear(in_features=512, out_features=32, bias=False)
+                )
+              )
+            )
+          )
+        )
+        (2): SwinTransformerBlock(
+          dim=512, input_resolution=(12, 12), num_heads=16, window_size=12, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=512, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=16
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=16, bias=False)
+            )
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU(approximate=none)
+            (fc2): Linear(in_features=2048, out_features=512, bias=False)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (3): SwinTransformerBlock(
+          dim=512, input_resolution=(12, 12), num_heads=16, window_size=12, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=512, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=16
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=16, bias=False)
+            )
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): MoEMlp(
+            [Statistics-0] param count for MoE, in_features = 512, hidden_features = 2048, num_local_experts = 1, top_value = 2, cosine_router=False normalize_gate=False, use_bpr = True
+            (_dropout): Dropout(p=0.1, inplace=False)
+            (_moe_layer): MOELayer(
+              Top-K(s) = ['k=2, noise=1.0'], Total-Experts = 32 [managed by 32 device(s)],
+              (experts): FusedExpertsNetwork(model_dim=512, hidden_size=2048, output_dim=512, local_experts=1)
+              (gates): ModuleList(
+                (0): LinearTopKGate(
+                  (wg): Linear(in_features=512, out_features=32, bias=False)
+                )
+              )
+            )
+          )
+        )
+        (4): SwinTransformerBlock(
+          dim=512, input_resolution=(12, 12), num_heads=16, window_size=12, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=512, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=16
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=16, bias=False)
+            )
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU(approximate=none)
+            (fc2): Linear(in_features=2048, out_features=512, bias=False)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (5): SwinTransformerBlock(
+          dim=512, input_resolution=(12, 12), num_heads=16, window_size=12, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=512, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=16
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=16, bias=False)
+            )
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): MoEMlp(
+            [Statistics-0] param count for MoE, in_features = 512, hidden_features = 2048, num_local_experts = 1, top_value = 2, cosine_router=False normalize_gate=False, use_bpr = True
+            (_dropout): Dropout(p=0.1, inplace=False)
+            (_moe_layer): MOELayer(
+              Top-K(s) = ['k=2, noise=1.0'], Total-Experts = 32 [managed by 32 device(s)],
+              (experts): FusedExpertsNetwork(model_dim=512, hidden_size=2048, output_dim=512, local_experts=1)
+              (gates): ModuleList(
+                (0): LinearTopKGate(
+                  (wg): Linear(in_features=512, out_features=32, bias=False)
+                )
+              )
+            )
+          )
+        )
+        (6): SwinTransformerBlock(
+          dim=512, input_resolution=(12, 12), num_heads=16, window_size=12, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=512, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=16
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=16, bias=False)
+            )
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU(approximate=none)
+            (fc2): Linear(in_features=2048, out_features=512, bias=False)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (7): SwinTransformerBlock(
+          dim=512, input_resolution=(12, 12), num_heads=16, window_size=12, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=512, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=16
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=16, bias=False)
+            )
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): MoEMlp(
+            [Statistics-0] param count for MoE, in_features = 512, hidden_features = 2048, num_local_experts = 1, top_value = 2, cosine_router=False normalize_gate=False, use_bpr = True
+            (_dropout): Dropout(p=0.1, inplace=False)
+            (_moe_layer): MOELayer(
+              Top-K(s) = ['k=2, noise=1.0'], Total-Experts = 32 [managed by 32 device(s)],
+              (experts): FusedExpertsNetwork(model_dim=512, hidden_size=2048, output_dim=512, local_experts=1)
+              (gates): ModuleList(
+                (0): LinearTopKGate(
+                  (wg): Linear(in_features=512, out_features=32, bias=False)
+                )
+              )
+            )
+          )
+        )
+        (8): SwinTransformerBlock(
+          dim=512, input_resolution=(12, 12), num_heads=16, window_size=12, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=512, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=16
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=16, bias=False)
+            )
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU(approximate=none)
+            (fc2): Linear(in_features=2048, out_features=512, bias=False)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (9): SwinTransformerBlock(
+          dim=512, input_resolution=(12, 12), num_heads=16, window_size=12, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=512, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=16
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=16, bias=False)
+            )
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): MoEMlp(
+            [Statistics-0] param count for MoE, in_features = 512, hidden_features = 2048, num_local_experts = 1, top_value = 2, cosine_router=False normalize_gate=False, use_bpr = True
+            (_dropout): Dropout(p=0.1, inplace=False)
+            (_moe_layer): MOELayer(
+              Top-K(s) = ['k=2, noise=1.0'], Total-Experts = 32 [managed by 32 device(s)],
+              (experts): FusedExpertsNetwork(model_dim=512, hidden_size=2048, output_dim=512, local_experts=1)
+              (gates): ModuleList(
+                (0): LinearTopKGate(
+                  (wg): Linear(in_features=512, out_features=32, bias=False)
+                )
+              )
+            )
+          )
+        )
+        (10): SwinTransformerBlock(
+          dim=512, input_resolution=(12, 12), num_heads=16, window_size=12, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=512, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=16
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=16, bias=False)
+            )
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU(approximate=none)
+            (fc2): Linear(in_features=2048, out_features=512, bias=False)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (11): SwinTransformerBlock(
+          dim=512, input_resolution=(12, 12), num_heads=16, window_size=12, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=512, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=16
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=16, bias=False)
+            )
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): MoEMlp(
+            [Statistics-0] param count for MoE, in_features = 512, hidden_features = 2048, num_local_experts = 1, top_value = 2, cosine_router=False normalize_gate=False, use_bpr = True
+            (_dropout): Dropout(p=0.1, inplace=False)
+            (_moe_layer): MOELayer(
+              Top-K(s) = ['k=2, noise=1.0'], Total-Experts = 32 [managed by 32 device(s)],
+              (experts): FusedExpertsNetwork(model_dim=512, hidden_size=2048, output_dim=512, local_experts=1)
+              (gates): ModuleList(
+                (0): LinearTopKGate(
+                  (wg): Linear(in_features=512, out_features=32, bias=False)
+                )
+              )
+            )
+          )
+        )
+        (12): SwinTransformerBlock(
+          dim=512, input_resolution=(12, 12), num_heads=16, window_size=12, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=512, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=16
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=16, bias=False)
+            )
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU(approximate=none)
+            (fc2): Linear(in_features=2048, out_features=512, bias=False)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (13): SwinTransformerBlock(
+          dim=512, input_resolution=(12, 12), num_heads=16, window_size=12, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=512, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=16
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=16, bias=False)
+            )
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): MoEMlp(
+            [Statistics-0] param count for MoE, in_features = 512, hidden_features = 2048, num_local_experts = 1, top_value = 2, cosine_router=False normalize_gate=False, use_bpr = True
+            (_dropout): Dropout(p=0.1, inplace=False)
+            (_moe_layer): MOELayer(
+              Top-K(s) = ['k=2, noise=1.0'], Total-Experts = 32 [managed by 32 device(s)],
+              (experts): FusedExpertsNetwork(model_dim=512, hidden_size=2048, output_dim=512, local_experts=1)
+              (gates): ModuleList(
+                (0): LinearTopKGate(
+                  (wg): Linear(in_features=512, out_features=32, bias=False)
+                )
+              )
+            )
+          )
+        )
+        (14): SwinTransformerBlock(
+          dim=512, input_resolution=(12, 12), num_heads=16, window_size=12, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=512, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=16
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=16, bias=False)
+            )
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU(approximate=none)
+            (fc2): Linear(in_features=2048, out_features=512, bias=False)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (15): SwinTransformerBlock(
+          dim=512, input_resolution=(12, 12), num_heads=16, window_size=12, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=512, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=16
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=16, bias=False)
+            )
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): MoEMlp(
+            [Statistics-0] param count for MoE, in_features = 512, hidden_features = 2048, num_local_experts = 1, top_value = 2, cosine_router=False normalize_gate=False, use_bpr = True
+            (_dropout): Dropout(p=0.1, inplace=False)
+            (_moe_layer): MOELayer(
+              Top-K(s) = ['k=2, noise=1.0'], Total-Experts = 32 [managed by 32 device(s)],
+              (experts): FusedExpertsNetwork(model_dim=512, hidden_size=2048, output_dim=512, local_experts=1)
+              (gates): ModuleList(
+                (0): LinearTopKGate(
+                  (wg): Linear(in_features=512, out_features=32, bias=False)
+                )
+              )
+            )
+          )
+        )
+        (16): SwinTransformerBlock(
+          dim=512, input_resolution=(12, 12), num_heads=16, window_size=12, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=512, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=16
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=16, bias=False)
+            )
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): Mlp(
+            (fc1): Linear(in_features=512, out_features=2048, bias=True)
+            (act): GELU(approximate=none)
+            (fc2): Linear(in_features=2048, out_features=512, bias=False)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (17): SwinTransformerBlock(
+          dim=512, input_resolution=(12, 12), num_heads=16, window_size=12, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=512, window_size=(12, 12), pretrained_window_size=(0, 0), num_heads=16
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=16, bias=False)
+            )
+            (qkv): Linear(in_features=512, out_features=1536, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=512, out_features=512, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): MoEMlp(
+            [Statistics-0] param count for MoE, in_features = 512, hidden_features = 2048, num_local_experts = 1, top_value = 2, cosine_router=False normalize_gate=False, use_bpr = True
+            (_dropout): Dropout(p=0.1, inplace=False)
+            (_moe_layer): MOELayer(
+              Top-K(s) = ['k=2, noise=1.0'], Total-Experts = 32 [managed by 32 device(s)],
+              (experts): FusedExpertsNetwork(model_dim=512, hidden_size=2048, output_dim=512, local_experts=1)
+              (gates): ModuleList(
+                (0): LinearTopKGate(
+                  (wg): Linear(in_features=512, out_features=32, bias=False)
+                )
+              )
+            )
+          )
+        )
+      )
+      (downsample): PatchMerging(
+        input_resolution=(12, 12), dim=512
+        (reduction): Linear(in_features=2048, out_features=1024, bias=False)
+        (norm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+      )
+    )
+    (3): BasicLayer(
+      dim=1024, input_resolution=(6, 6), depth=2
+      (blocks): ModuleList(
+        (0): SwinTransformerBlock(
+          dim=1024, input_resolution=(6, 6), num_heads=32, window_size=6, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=1024, window_size=(6, 6), pretrained_window_size=(0, 0), num_heads=32
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=32, bias=False)
+            )
+            (qkv): Linear(in_features=1024, out_features=3072, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): Mlp(
+            (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+            (act): GELU(approximate=none)
+            (fc2): Linear(in_features=4096, out_features=1024, bias=False)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): SwinTransformerBlock(
+          dim=1024, input_resolution=(6, 6), num_heads=32, window_size=6, shift_size=0, mlp_ratio=4.0
+          (norm1): TimerModule(
+            (model): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          )
+          (attn): WindowAttention(
+            dim=1024, window_size=(6, 6), pretrained_window_size=(0, 0), num_heads=32
+            (cpb_mlp): Sequential(
+              (0): Linear(in_features=2, out_features=512, bias=True)
+              (1): ReLU(inplace=True)
+              (2): Linear(in_features=512, out_features=32, bias=False)
+            )
+            (qkv): Linear(in_features=1024, out_features=3072, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): TimerModule(
+            (model): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          )
+          (mlp): MoEMlp(
+            [Statistics-0] param count for MoE, in_features = 1024, hidden_features = 4096, num_local_experts = 1, top_value = 2, cosine_router=False normalize_gate=False, use_bpr = True
+            (_dropout): Dropout(p=0.1, inplace=False)
+            (_moe_layer): MOELayer(
+              Top-K(s) = ['k=2, noise=1.0'], Total-Experts = 32 [managed by 32 device(s)],
+              (experts): FusedExpertsNetwork(model_dim=1024, hidden_size=4096, output_dim=1024, local_experts=1)
+              (gates): ModuleList(
+                (0): LinearTopKGate(
+                  (wg): Linear(in_features=1024, out_features=32, bias=False)
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+  (norm): TimerModule(
+    (model): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+  )
+  (avgpool): TimerModule(
+    (model): AdaptiveAvgPool1d(output_size=1)
+  )
+  (head): TimerModule(
+    (model): Linear(in_features=1024, out_features=21841, bias=True)
+  )
+)
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.1.mlp._moe_layer.experts.batched_fc1_w] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.1.mlp._moe_layer.experts.batched_fc2_w] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.1.mlp._moe_layer.experts.batched_fc1_bias] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.3.mlp._moe_layer.experts.batched_fc1_w] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.3.mlp._moe_layer.experts.batched_fc2_w] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.3.mlp._moe_layer.experts.batched_fc1_bias] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.5.mlp._moe_layer.experts.batched_fc1_w] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.5.mlp._moe_layer.experts.batched_fc2_w] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.5.mlp._moe_layer.experts.batched_fc1_bias] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.7.mlp._moe_layer.experts.batched_fc1_w] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.7.mlp._moe_layer.experts.batched_fc2_w] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.7.mlp._moe_layer.experts.batched_fc1_bias] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.9.mlp._moe_layer.experts.batched_fc1_w] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.9.mlp._moe_layer.experts.batched_fc2_w] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.9.mlp._moe_layer.experts.batched_fc1_bias] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.11.mlp._moe_layer.experts.batched_fc1_w] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.11.mlp._moe_layer.experts.batched_fc2_w] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.11.mlp._moe_layer.experts.batched_fc1_bias] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.13.mlp._moe_layer.experts.batched_fc1_w] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.13.mlp._moe_layer.experts.batched_fc2_w] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.13.mlp._moe_layer.experts.batched_fc1_bias] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.15.mlp._moe_layer.experts.batched_fc1_w] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.15.mlp._moe_layer.experts.batched_fc2_w] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.15.mlp._moe_layer.experts.batched_fc1_bias] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.17.mlp._moe_layer.experts.batched_fc1_w] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.17.mlp._moe_layer.experts.batched_fc2_w] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.2.blocks.17.mlp._moe_layer.experts.batched_fc1_bias] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.3.blocks.1.mlp._moe_layer.experts.batched_fc1_w] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.3.blocks.1.mlp._moe_layer.experts.batched_fc2_w] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 103)[0m: INFO [rank0] [layers.3.blocks.1.mlp._moe_layer.experts.batched_fc1_bias] skip all_reduce and div 32 for grad
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 107)[0m: INFO number of params single: 109464273.0
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 110)[0m: INFO number of params whole: 955314897.0
+[32m[2023-01-05 04:19:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 113)[0m: INFO number of GFLOPs: 37.753627648
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+[32m[2023-01-05 04:19:25 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 147)[0m: INFO no checkpoint found in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default, ignoring auto resume
+[32m[2023-01-05 04:19:25 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 167)[0m: INFO Start training
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 18/32
+local rank 2 / global rank 18 successfully build train dataset
+local rank 2 / global rank 18 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 16/32
+local rank 0 / global rank 16 successfully build train dataset
+local rank 0 / global rank 16 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 11/32
+local rank 3 / global rank 11 successfully build train dataset
+local rank 3 / global rank 11 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 10/32
+local rank 2 / global rank 10 successfully build train dataset
+local rank 2 / global rank 10 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 21/32
+local rank 5 / global rank 21 successfully build train dataset
+local rank 5 / global rank 21 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 8/32
+local rank 0 / global rank 8 successfully build train dataset
+local rank 0 / global rank 8 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 23/32
+local rank 7 / global rank 23 successfully build train dataset
+local rank 7 / global rank 23 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 2/32
+local rank 2 / global rank 2 successfully build train dataset
+local rank 2 / global rank 2 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 20/32
+local rank 4 / global rank 20 successfully build train dataset
+local rank 4 / global rank 20 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 15/32
+local rank 7 / global rank 15 successfully build train dataset
+local rank 7 / global rank 15 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 17/32
+local rank 1 / global rank 17 successfully build train dataset
+local rank 1 / global rank 17 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 14/32
+local rank 6 / global rank 14 successfully build train dataset
+local rank 6 / global rank 14 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 13/32
+local rank 5 / global rank 13 successfully build train dataset
+local rank 5 / global rank 13 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 9/32
+local rank 1 / global rank 9 successfully build train dataset
+local rank 1 / global rank 9 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 26/32
+local rank 2 / global rank 26 successfully build train dataset
+local rank 2 / global rank 26 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 19/32
+local rank 3 / global rank 19 successfully build train dataset
+local rank 3 / global rank 19 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 22/32
+local rank 6 / global rank 22 successfully build train dataset
+local rank 6 / global rank 22 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 30/32
+local rank 6 / global rank 30 successfully build train dataset
+local rank 6 / global rank 30 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 31/32
+local rank 7 / global rank 31 successfully build train dataset
+local rank 7 / global rank 31 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 25/32
+local rank 1 / global rank 25 successfully build train dataset
+local rank 1 / global rank 25 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 12/32
+local rank 4 / global rank 12 successfully build train dataset
+local rank 4 / global rank 12 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 7/32
+local rank 7 / global rank 7 successfully build train dataset
+local rank 7 / global rank 7 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 4/32
+local rank 4 / global rank 4 successfully build train dataset
+local rank 4 / global rank 4 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 3/32
+local rank 3 / global rank 3 successfully build train dataset
+local rank 3 / global rank 3 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 1/32
+local rank 1 / global rank 1 successfully build train dataset
+local rank 1 / global rank 1 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 5/32
+local rank 5 / global rank 5 successfully build train dataset
+local rank 5 / global rank 5 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 6/32
+local rank 6 / global rank 6 successfully build train dataset
+local rank 6 / global rank 6 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 28/32
+local rank 4 / global rank 28 successfully build train dataset
+local rank 4 / global rank 28 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 24/32
+local rank 0 / global rank 24 successfully build train dataset
+local rank 0 / global rank 24 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 29/32
+local rank 5 / global rank 29 successfully build train dataset
+local rank 5 / global rank 29 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+=> merge config from configs/swinmoe/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k.yaml
+RANK and WORLD_SIZE in environ: 27/32
+local rank 3 / global rank 27 successfully build train dataset
+local rank 3 / global rank 27 successfully build val dataset
+All master checkpoints founded in /home/zms/model_training/MoE/test_sw_transformer/logs/tutel_moe_gshard4.8/swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k/default: []
+[32m[2023-01-05 04:19:34 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][0/54685]	eta 6 days, 1:42:51 lr 0.001000	 wd 0.1000	time 9.5926 (9.5926)	loss 0.6351 (0.6351)	loss-cls 10.0601 (10.0601)	loss-aux 0.1021 (0.1021)	grad_norm 0.0000 (0.0000)	loss_scale 65536.0000 (65536.0000)	mem 3912MB	batch_time 9.5926
+[32m[2023-01-05 04:19:59 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][16/54685]	eta 1 day, 7:01:49 lr 0.001000	 wd 0.1000	time 1.6006 (2.0434)	loss 0.6324 (0.6313)	loss-cls 10.0130 (9.9980)	loss-aux 0.1048 (0.1030)	grad_norm 0.5330 (0.5330)	loss_scale 65536.0000 (65536.0000)	mem 5315MB	batch_time 25.1449
+[32m[2023-01-05 04:20:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][32/54685]	eta 1 day, 3:26:55 lr 0.001000	 wd 0.1000	time 1.5280 (1.8081)	loss 0.6321 (0.6316)	loss-cls 10.0084 (10.0015)	loss-aux 0.1049 (0.1039)	grad_norm 0.5051 (0.5191)	loss_scale 65536.0000 (65536.0000)	mem 5324MB	batch_time 24.9282
+[32m[2023-01-05 04:20:49 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][48/54685]	eta 1 day, 2:11:01 lr 0.001000	 wd 0.1000	time 1.5501 (1.7252)	loss 0.6306 (0.6321)	loss-cls 9.9742 (10.0077)	loss-aux 0.1154 (0.1055)	grad_norm 0.4624 (0.5002)	loss_scale 65536.0000 (65536.0000)	mem 5324MB	batch_time 24.8711
+[32m[2023-01-05 04:21:14 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][64/54685]	eta 1 day, 1:36:33 lr 0.001000	 wd 0.1000	time 1.5692 (1.6879)	loss 0.6371 (0.6324)	loss-cls 10.0770 (10.0107)	loss-aux 0.1161 (0.1075)	grad_norm 0.5172 (0.5044)	loss_scale 65536.0000 (65536.0000)	mem 5324MB	batch_time 25.1754
+[32m[2023-01-05 04:21:39 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][80/54685]	eta 1 day, 1:13:33 lr 0.001000	 wd 0.1000	time 1.5509 (1.6631)	loss 0.6364 (0.6315)	loss-cls 10.0607 (9.9948)	loss-aux 0.1217 (0.1094)	grad_norm 0.4665 (0.4968)	loss_scale 65536.0000 (65536.0000)	mem 5324MB	batch_time 24.9994
+[32m[2023-01-05 04:22:04 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][96/54685]	eta 1 day, 0:57:55 lr 0.001000	 wd 0.1000	time 1.5549 (1.6464)	loss 0.6407 (0.6319)	loss-cls 10.1362 (9.9992)	loss-aux 0.1150 (0.1120)	grad_norm 0.4647 (0.4915)	loss_scale 65536.0000 (65536.0000)	mem 5324MB	batch_time 24.9898
+[32m[2023-01-05 04:22:30 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][112/54685]	eta 1 day, 0:47:53 lr 0.001000	 wd 0.1000	time 1.5723 (1.6359)	loss 0.6337 (0.6319)	loss-cls 10.0167 (9.9964)	loss-aux 0.1229 (0.1136)	grad_norm 0.4884 (0.4910)	loss_scale 65536.0000 (65536.0000)	mem 5324MB	batch_time 25.1512
+[32m[2023-01-05 04:22:55 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][128/54685]	eta 1 day, 0:39:17 lr 0.001000	 wd 0.1000	time 1.5426 (1.6269)	loss 0.6391 (0.6310)	loss-cls 10.1024 (9.9813)	loss-aux 0.1228 (0.1152)	grad_norm 0.4601 (0.4872)	loss_scale 65536.0000 (65536.0000)	mem 5324MB	batch_time 25.0148
+[32m[2023-01-05 04:23:20 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][144/54685]	eta 1 day, 0:33:17 lr 0.001000	 wd 0.1000	time 1.5714 (1.6208)	loss 0.6265 (0.6302)	loss-cls 9.9097 (9.9663)	loss-aux 0.1149 (0.1162)	grad_norm 0.3794 (0.4752)	loss_scale 65536.0000 (65536.0000)	mem 5324MB	batch_time 25.1422
+[32m[2023-01-05 04:23:45 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][160/54685]	eta 1 day, 0:27:41 lr 0.001000	 wd 0.1000	time 1.5422 (1.6151)	loss 0.6221 (0.6297)	loss-cls 9.8336 (9.9582)	loss-aux 0.1194 (0.1164)	grad_norm 0.4087 (0.4685)	loss_scale 65536.0000 (65536.0000)	mem 5324MB	batch_time 25.0155
+[32m[2023-01-05 04:24:10 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][176/54685]	eta 1 day, 0:22:58 lr 0.001000	 wd 0.1000	time 1.5584 (1.6104)	loss 0.6137 (0.6296)	loss-cls 9.6904 (9.9559)	loss-aux 0.1280 (0.1171)	grad_norm 0.3920 (0.4616)	loss_scale 65536.0000 (65536.0000)	mem 5324MB	batch_time 25.0085
+[32m[2023-01-05 04:24:35 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][192/54685]	eta 1 day, 0:19:05 lr 0.001000	 wd 0.1000	time 1.5554 (1.6065)	loss 0.6299 (0.6295)	loss-cls 9.9591 (9.9548)	loss-aux 0.1188 (0.1178)	grad_norm 0.3992 (0.4564)	loss_scale 65536.0000 (65536.0000)	mem 5324MB	batch_time 25.0293
+[32m[2023-01-05 04:25:00 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][208/54685]	eta 1 day, 0:15:24 lr 0.001000	 wd 0.1000	time 1.5870 (1.6030)	loss 0.6254 (0.6292)	loss-cls 9.8811 (9.9485)	loss-aux 0.1250 (0.1180)	grad_norm 0.3666 (0.4495)	loss_scale 65536.0000 (65536.0000)	mem 5325MB	batch_time 24.9546
+[32m[2023-01-05 04:25:25 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][224/54685]	eta 1 day, 0:12:39 lr 0.001000	 wd 0.1000	time 1.5514 (1.6004)	loss 0.5911 (0.6288)	loss-cls 9.3344 (9.9419)	loss-aux 0.1240 (0.1184)	grad_norm 0.4621 (0.4504)	loss_scale 65536.0000 (65536.0000)	mem 5325MB	batch_time 25.0752
+[32m[2023-01-05 04:25:50 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][240/54685]	eta 1 day, 0:09:46 lr 0.001000	 wd 0.1000	time 1.5605 (1.5977)	loss 0.6283 (0.6282)	loss-cls 9.9307 (9.9318)	loss-aux 0.1219 (0.1187)	grad_norm 0.4522 (0.4505)	loss_scale 65536.0000 (65536.0000)	mem 5326MB	batch_time 24.9536
+[32m[2023-01-05 04:26:15 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][256/54685]	eta 1 day, 0:07:29 lr 0.001000	 wd 0.1000	time 1.5691 (1.5956)	loss 0.6581 (0.6278)	loss-cls 10.4083 (9.9261)	loss-aux 0.1210 (0.1189)	grad_norm 0.5375 (0.4559)	loss_scale 65536.0000 (65536.0000)	mem 5326MB	batch_time 25.0334
+[32m[2023-01-05 04:26:40 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][272/54685]	eta 1 day, 0:05:25 lr 0.001000	 wd 0.1000	time 1.5318 (1.5938)	loss 0.6234 (0.6276)	loss-cls 9.8431 (9.9228)	loss-aux 0.1320 (0.1192)	grad_norm 0.4366 (0.4548)	loss_scale 65536.0000 (65536.0000)	mem 5326MB	batch_time 25.0367
+[32m[2023-01-05 04:27:05 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][288/54685]	eta 1 day, 0:03:24 lr 0.001000	 wd 0.1000	time 1.5602 (1.5921)	loss 0.6111 (0.6274)	loss-cls 9.6596 (9.9183)	loss-aux 0.1182 (0.1196)	grad_norm 0.6562 (0.4660)	loss_scale 65536.0000 (65536.0000)	mem 5326MB	batch_time 24.9940
+[32m[2023-01-05 04:27:30 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][304/54685]	eta 1 day, 0:01:43 lr 0.001000	 wd 0.1000	time 1.5524 (1.5907)	loss 0.6282 (0.6271)	loss-cls 9.9233 (9.9144)	loss-aux 0.1280 (0.1198)	grad_norm 0.6011 (0.4731)	loss_scale 65536.0000 (65536.0000)	mem 5326MB	batch_time 25.0514
+[32m[2023-01-05 04:27:55 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][320/54685]	eta 23:59:48 lr 0.001000	 wd 0.1000	time 1.5320 (1.5890)	loss 0.6464 (0.6270)	loss-cls 10.2193 (9.9127)	loss-aux 0.1238 (0.1198)	grad_norm nan (nan)	loss_scale 32768.0000 (65331.8380)	mem 5326MB	batch_time 24.9232
+[32m[2023-01-05 04:28:20 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][336/54685]	eta 23:58:24 lr 0.001000	 wd 0.1000	time 1.5663 (1.5880)	loss 0.6387 (0.6267)	loss-cls 10.1036 (9.9081)	loss-aux 0.1153 (0.1199)	grad_norm 1.6971 (nan)	loss_scale 32768.0000 (63785.7804)	mem 5326MB	batch_time 25.0621
+[32m[2023-01-05 04:28:45 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][352/54685]	eta 23:56:53 lr 0.001000	 wd 0.1000	time 1.5578 (1.5868)	loss 0.6263 (0.6264)	loss-cls 9.8976 (9.9018)	loss-aux 0.1227 (0.1200)	grad_norm 1.6993 (nan)	loss_scale 32768.0000 (62379.8754)	mem 5326MB	batch_time 24.9779
+[32m[2023-01-05 04:29:10 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][368/54685]	eta 23:55:48 lr 0.001000	 wd 0.1000	time 1.6401 (1.5860)	loss 0.6100 (0.6261)	loss-cls 9.6398 (9.8980)	loss-aux 0.1209 (0.1201)	grad_norm 0.4371 (nan)	loss_scale 32768.0000 (61095.8916)	mem 5326MB	batch_time 25.1216
+[32m[2023-01-05 04:29:35 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][384/54685]	eta 23:54:26 lr 0.001000	 wd 0.1000	time 1.5267 (1.5850)	loss 0.6139 (0.6257)	loss-cls 9.6998 (9.8912)	loss-aux 0.1232 (0.1202)	grad_norm 0.5236 (nan)	loss_scale 32768.0000 (59918.6286)	mem 5326MB	batch_time 24.9719
+[32m[2023-01-05 04:30:00 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][400/54685]	eta 23:53:08 lr 0.001000	 wd 0.1000	time 1.5458 (1.5840)	loss 0.6322 (0.6255)	loss-cls 9.9988 (9.8887)	loss-aux 0.1169 (0.1201)	grad_norm 0.4666 (nan)	loss_scale 32768.0000 (58835.3117)	mem 5326MB	batch_time 24.9725
+[32m[2023-01-05 04:30:25 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][416/54685]	eta 23:51:58 lr 0.001000	 wd 0.1000	time 1.5500 (1.5832)	loss 0.6284 (0.6254)	loss-cls 9.9219 (9.8860)	loss-aux 0.1329 (0.1201)	grad_norm 0.5902 (nan)	loss_scale 32768.0000 (57835.1271)	mem 5326MB	batch_time 25.0045
+[32m[2023-01-05 04:30:50 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][432/54685]	eta 23:50:36 lr 0.001000	 wd 0.1000	time 1.5528 (1.5821)	loss 0.6012 (0.6251)	loss-cls 9.4955 (9.8808)	loss-aux 0.1238 (0.1203)	grad_norm 0.5327 (nan)	loss_scale 32768.0000 (56908.8591)	mem 5326MB	batch_time 24.8754
+[32m[2023-01-05 04:31:15 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][448/54685]	eta 23:49:39 lr 0.001000	 wd 0.1000	time 1.5597 (1.5816)	loss 0.6276 (0.6252)	loss-cls 9.9255 (9.8827)	loss-aux 0.1166 (0.1206)	grad_norm 0.7500 (nan)	loss_scale 32768.0000 (56048.6058)	mem 5328MB	batch_time 25.0550
+[32m[2023-01-05 04:31:40 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][464/54685]	eta 23:48:42 lr 0.001000	 wd 0.1000	time 1.5320 (1.5810)	loss 0.6264 (0.6251)	loss-cls 9.9065 (9.8817)	loss-aux 0.1162 (0.1206)	grad_norm 0.8209 (nan)	loss_scale 32768.0000 (55247.5527)	mem 5328MB	batch_time 25.0288
+[32m[2023-01-05 04:32:05 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][480/54685]	eta 23:47:32 lr 0.001000	 wd 0.1000	time 1.5902 (1.5802)	loss 0.6152 (0.6249)	loss-cls 9.7176 (9.8779)	loss-aux 0.1256 (0.1206)	grad_norm inf (nan)	loss_scale 16384.0000 (54431.6674)	mem 5328MB	batch_time 24.9040
+[32m[2023-01-05 04:32:30 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][496/54685]	eta 23:46:41 lr 0.001000	 wd 0.1000	time 1.5558 (1.5797)	loss 0.6367 (0.6249)	loss-cls 10.0701 (9.8779)	loss-aux 0.1167 (0.1206)	grad_norm 0.6456 (nan)	loss_scale 16384.0000 (53206.7928)	mem 5328MB	batch_time 25.0443
+[32m[2023-01-05 04:32:55 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][512/54685]	eta 23:45:37 lr 0.001000	 wd 0.1000	time 1.5434 (1.5790)	loss 0.5903 (0.6248)	loss-cls 9.3241 (9.8768)	loss-aux 0.1208 (0.1206)	grad_norm inf (nan)	loss_scale 8192.0000 (52026.3860)	mem 5328MB	batch_time 24.9079
+[32m[2023-01-05 04:33:20 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][528/54685]	eta 23:44:53 lr 0.001000	 wd 0.1000	time 1.5478 (1.5786)	loss 0.6211 (0.6247)	loss-cls 9.8218 (9.8741)	loss-aux 0.1161 (0.1207)	grad_norm 0.5551 (nan)	loss_scale 8192.0000 (50700.5822)	mem 5328MB	batch_time 25.0814
+[32m[2023-01-05 04:33:45 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][544/54685]	eta 23:43:53 lr 0.001000	 wd 0.1000	time 1.5673 (1.5780)	loss 0.6207 (0.6246)	loss-cls 9.8109 (9.8735)	loss-aux 0.1200 (0.1207)	grad_norm 0.5444 (nan)	loss_scale 8192.0000 (49452.6239)	mem 5328MB	batch_time 24.9126
+[32m[2023-01-05 04:34:10 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][560/54685]	eta 23:43:06 lr 0.001000	 wd 0.1000	time 1.5704 (1.5776)	loss 0.6408 (0.6245)	loss-cls 10.1348 (9.8719)	loss-aux 0.1187 (0.1208)	grad_norm 0.4410 (nan)	loss_scale 8192.0000 (48275.8503)	mem 5328MB	batch_time 25.0197
+[32m[2023-01-05 04:34:35 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][576/54685]	eta 23:42:20 lr 0.001000	 wd 0.1000	time 1.5438 (1.5772)	loss 0.6294 (0.6245)	loss-cls 9.9425 (9.8711)	loss-aux 0.1282 (0.1207)	grad_norm 0.9937 (nan)	loss_scale 8192.0000 (47164.3397)	mem 5328MB	batch_time 25.0170
+[32m[2023-01-05 04:35:00 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][592/54685]	eta 23:41:33 lr 0.001000	 wd 0.1000	time 1.5701 (1.5768)	loss 0.6242 (0.6244)	loss-cls 9.8680 (9.8705)	loss-aux 0.1195 (0.1207)	grad_norm 0.3183 (nan)	loss_scale 8192.0000 (46112.8094)	mem 5328MB	batch_time 24.9956
+[32m[2023-01-05 04:35:25 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][608/54685]	eta 23:40:48 lr 0.001000	 wd 0.1000	time 1.5468 (1.5764)	loss 0.6080 (0.6244)	loss-cls 9.6001 (9.8698)	loss-aux 0.1276 (0.1207)	grad_norm 0.3855 (nan)	loss_scale 8192.0000 (45116.5320)	mem 5328MB	batch_time 25.0038
+[32m[2023-01-05 04:35:50 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][624/54685]	eta 23:39:51 lr 0.001000	 wd 0.1000	time 1.5556 (1.5758)	loss 0.6191 (0.6242)	loss-cls 9.7726 (9.8658)	loss-aux 0.1332 (0.1208)	grad_norm 0.9022 (nan)	loss_scale 8192.0000 (44171.2640)	mem 5328MB	batch_time 24.8587
+[32m[2023-01-05 04:36:15 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][640/54685]	eta 23:39:12 lr 0.001000	 wd 0.1000	time 1.5276 (1.5756)	loss 0.6187 (0.6241)	loss-cls 9.7824 (9.8653)	loss-aux 0.1171 (0.1207)	grad_norm 1.8404 (nan)	loss_scale 8192.0000 (43273.1856)	mem 5328MB	batch_time 25.0501
+[32m[2023-01-05 04:36:40 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][656/54685]	eta 23:38:27 lr 0.001000	 wd 0.1000	time 1.5639 (1.5752)	loss 0.6237 (0.6241)	loss-cls 9.8630 (9.8645)	loss-aux 0.1164 (0.1207)	grad_norm 0.9101 (nan)	loss_scale 8192.0000 (42418.8493)	mem 5328MB	batch_time 24.9654
+[32m[2023-01-05 04:37:05 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][672/54685]	eta 23:37:42 lr 0.001000	 wd 0.1000	time 1.5681 (1.5749)	loss 0.6174 (0.6240)	loss-cls 9.7599 (9.8641)	loss-aux 0.1184 (0.1207)	grad_norm 2.0793 (nan)	loss_scale 8192.0000 (41605.1352)	mem 5328MB	batch_time 24.9654
+[32m[2023-01-05 04:37:30 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][688/54685]	eta 23:37:05 lr 0.001000	 wd 0.1000	time 1.5291 (1.5746)	loss 0.6199 (0.6239)	loss-cls 9.8047 (9.8614)	loss-aux 0.1142 (0.1206)	grad_norm 0.4188 (nan)	loss_scale 8192.0000 (40829.2134)	mem 5328MB	batch_time 25.0402
+[32m[2023-01-05 04:37:55 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][704/54685]	eta 23:36:21 lr 0.001000	 wd 0.1000	time 1.5674 (1.5743)	loss 0.6256 (0.6237)	loss-cls 9.8885 (9.8580)	loss-aux 0.1219 (0.1205)	grad_norm 1.1626 (nan)	loss_scale 8192.0000 (40088.5106)	mem 5328MB	batch_time 24.9458
+[32m[2023-01-05 04:38:20 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][720/54685]	eta 23:35:39 lr 0.001000	 wd 0.1000	time 1.5552 (1.5740)	loss 0.6300 (0.6235)	loss-cls 9.9672 (9.8554)	loss-aux 0.1127 (0.1204)	grad_norm 0.5405 (nan)	loss_scale 8192.0000 (39380.6824)	mem 5328MB	batch_time 24.9717
+[32m[2023-01-05 04:38:45 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][736/54685]	eta 23:35:09 lr 0.001000	 wd 0.1000	time 1.5509 (1.5739)	loss 0.6227 (0.6233)	loss-cls 9.8482 (9.8530)	loss-aux 0.1150 (0.1202)	grad_norm 0.5748 (nan)	loss_scale 8192.0000 (38703.5875)	mem 5328MB	batch_time 25.1223
+[32m[2023-01-05 04:39:10 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][752/54685]	eta 23:34:40 lr 0.001000	 wd 0.1000	time 1.5556 (1.5738)	loss 0.6128 (0.6232)	loss-cls 9.6833 (9.8510)	loss-aux 0.1207 (0.1201)	grad_norm 0.6666 (nan)	loss_scale 8192.0000 (38055.2669)	mem 5328MB	batch_time 25.1251
+[32m[2023-01-05 04:39:35 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][768/54685]	eta 23:33:58 lr 0.001000	 wd 0.1000	time 1.5416 (1.5735)	loss 0.6150 (0.6232)	loss-cls 9.7312 (9.8504)	loss-aux 0.1085 (0.1200)	grad_norm 0.6136 (nan)	loss_scale 8192.0000 (37433.9246)	mem 5328MB	batch_time 24.9456
+[32m[2023-01-05 04:40:00 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][784/54685]	eta 23:33:23 lr 0.001000	 wd 0.1000	time 1.5471 (1.5733)	loss 0.6112 (0.6231)	loss-cls 9.6656 (9.8501)	loss-aux 0.1133 (0.1200)	grad_norm 2.4295 (nan)	loss_scale 8192.0000 (36837.9108)	mem 5328MB	batch_time 25.0269
+[32m[2023-01-05 04:40:25 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][800/54685]	eta 23:32:49 lr 0.001000	 wd 0.1000	time 1.5509 (1.5732)	loss 0.6243 (0.6230)	loss-cls 9.8703 (9.8483)	loss-aux 0.1178 (0.1199)	grad_norm 0.4492 (nan)	loss_scale 8192.0000 (36265.7079)	mem 5328MB	batch_time 25.0380
+[32m[2023-01-05 04:40:50 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][816/54685]	eta 23:32:02 lr 0.001000	 wd 0.1000	time 1.5528 (1.5727)	loss 0.6022 (0.6229)	loss-cls 9.5230 (9.8459)	loss-aux 0.1130 (0.1198)	grad_norm inf (nan)	loss_scale 4096.0000 (35705.8898)	mem 5328MB	batch_time 24.8372
+[32m[2023-01-05 04:41:15 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][832/54685]	eta 23:31:27 lr 0.001000	 wd 0.1000	time 1.5546 (1.5726)	loss 0.6355 (0.6228)	loss-cls 10.0520 (9.8444)	loss-aux 0.1161 (0.1197)	grad_norm 0.5621 (nan)	loss_scale 4096.0000 (35098.7371)	mem 5328MB	batch_time 25.0184
+[32m[2023-01-05 04:41:40 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][848/54685]	eta 23:30:47 lr 0.001000	 wd 0.1000	time 1.5595 (1.5723)	loss 0.5981 (0.6226)	loss-cls 9.4482 (9.8417)	loss-aux 0.1218 (0.1197)	grad_norm 0.5747 (nan)	loss_scale 4096.0000 (34514.4688)	mem 5328MB	batch_time 24.9342
+[32m[2023-01-05 04:42:05 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][864/54685]	eta 23:30:13 lr 0.001000	 wd 0.1000	time 1.5623 (1.5721)	loss 0.6089 (0.6225)	loss-cls 9.6260 (9.8406)	loss-aux 0.1158 (0.1196)	grad_norm 1.0106 (nan)	loss_scale 4096.0000 (33951.8150)	mem 5328MB	batch_time 25.0104
+[32m[2023-01-05 04:42:30 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][880/54685]	eta 23:29:38 lr 0.001000	 wd 0.1000	time 1.5570 (1.5719)	loss 0.6295 (0.6225)	loss-cls 9.9570 (9.8397)	loss-aux 0.1155 (0.1195)	grad_norm 2.9736 (nan)	loss_scale 4096.0000 (33409.5982)	mem 5328MB	batch_time 24.9907
+[32m[2023-01-05 04:42:55 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][896/54685]	eta 23:29:03 lr 0.001000	 wd 0.1000	time 1.5670 (1.5718)	loss 0.6182 (0.6223)	loss-cls 9.7531 (9.8378)	loss-aux 0.1380 (0.1195)	grad_norm 0.8442 (nan)	loss_scale 4096.0000 (32886.7246)	mem 5328MB	batch_time 24.9927
+[32m[2023-01-05 04:43:20 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][912/54685]	eta 23:28:32 lr 0.001000	 wd 0.1000	time 1.5551 (1.5717)	loss 0.6213 (0.6223)	loss-cls 9.7980 (9.8376)	loss-aux 0.1431 (0.1195)	grad_norm 0.8343 (nan)	loss_scale 4096.0000 (32382.1774)	mem 5328MB	batch_time 25.0461
+[32m[2023-01-05 04:43:45 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][928/54685]	eta 23:27:54 lr 0.001000	 wd 0.1000	time 1.5739 (1.5714)	loss 0.6481 (0.6223)	loss-cls 10.2424 (9.8370)	loss-aux 0.1273 (0.1198)	grad_norm 0.8798 (nan)	loss_scale 4096.0000 (31895.0097)	mem 5328MB	batch_time 24.9282
+[32m[2023-01-05 04:44:09 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][944/54685]	eta 23:27:17 lr 0.001000	 wd 0.1000	time 1.5414 (1.5712)	loss 0.6148 (0.6223)	loss-cls 9.7029 (9.8364)	loss-aux 0.1344 (0.1199)	grad_norm 0.8845 (nan)	loss_scale 4096.0000 (31424.3386)	mem 5328MB	batch_time 24.9307
+[32m[2023-01-05 04:44:35 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][960/54685]	eta 23:26:47 lr 0.001000	 wd 0.1000	time 1.5519 (1.5711)	loss 0.6136 (0.6222)	loss-cls 9.6926 (9.8348)	loss-aux 0.1250 (0.1201)	grad_norm 1.1593 (nan)	loss_scale 4096.0000 (30969.3403)	mem 5328MB	batch_time 25.0432
+[32m[2023-01-05 04:45:00 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][976/54685]	eta 23:26:15 lr 0.001000	 wd 0.1000	time 1.5466 (1.5710)	loss 0.6167 (0.6221)	loss-cls 9.7463 (9.8334)	loss-aux 0.1213 (0.1203)	grad_norm 3.9623 (nan)	loss_scale 4096.0000 (30529.2446)	mem 5328MB	batch_time 25.0206
+[32m[2023-01-05 04:45:25 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][992/54685]	eta 23:25:43 lr 0.001000	 wd 0.1000	time 1.5483 (1.5708)	loss 0.6119 (0.6220)	loss-cls 9.6665 (9.8309)	loss-aux 0.1231 (0.1203)	grad_norm 2.6528 (nan)	loss_scale 4096.0000 (30103.3313)	mem 5328MB	batch_time 25.0049
+[32m[2023-01-05 04:45:49 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1008/54685]	eta 23:25:05 lr 0.001000	 wd 0.1000	time 1.5409 (1.5706)	loss 0.6323 (0.6220)	loss-cls 9.9922 (9.8310)	loss-aux 0.1246 (0.1204)	grad_norm 8.6152 (nan)	loss_scale 4096.0000 (29690.9257)	mem 5328MB	batch_time 24.8889
+[32m[2023-01-05 04:46:14 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1024/54685]	eta 23:24:34 lr 0.001000	 wd 0.1000	time 1.5529 (1.5705)	loss 0.6312 (0.6220)	loss-cls 9.9857 (9.8321)	loss-aux 0.1141 (0.1205)	grad_norm nan (nan)	loss_scale 2048.0000 (29287.3990)	mem 5328MB	batch_time 25.0187
+[32m[2023-01-05 04:46:39 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1040/54685]	eta 23:23:57 lr 0.001000	 wd 0.1000	time 1.5657 (1.5703)	loss 0.6125 (0.6220)	loss-cls 9.6685 (9.8317)	loss-aux 0.1317 (0.1205)	grad_norm 3.6942 (nan)	loss_scale 2048.0000 (28868.7339)	mem 5328MB	batch_time 24.9081
+[32m[2023-01-05 04:47:04 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1056/54685]	eta 23:23:25 lr 0.001000	 wd 0.1000	time 1.5447 (1.5702)	loss 0.6173 (0.6219)	loss-cls 9.7392 (9.8304)	loss-aux 0.1379 (0.1207)	grad_norm 10.7006 (nan)	loss_scale 2048.0000 (28462.7436)	mem 5328MB	batch_time 24.9896
+[32m[2023-01-05 04:47:29 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1072/54685]	eta 23:22:51 lr 0.001000	 wd 0.1000	time 1.5347 (1.5700)	loss 0.6134 (0.6219)	loss-cls 9.6833 (9.8299)	loss-aux 0.1315 (0.1208)	grad_norm inf (nan)	loss_scale 1024.0000 (28066.9525)	mem 5328MB	batch_time 24.9384
+[32m[2023-01-05 04:47:54 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1088/54685]	eta 23:22:17 lr 0.001000	 wd 0.1000	time 1.5574 (1.5698)	loss 0.6087 (0.6218)	loss-cls 9.6158 (9.8286)	loss-aux 0.1237 (0.1210)	grad_norm 4.8310 (nan)	loss_scale 1024.0000 (27669.6272)	mem 5328MB	batch_time 24.9382
+[32m[2023-01-05 04:48:19 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1104/54685]	eta 23:21:47 lr 0.001000	 wd 0.1000	time 1.5603 (1.5697)	loss 0.6167 (0.6218)	loss-cls 9.7465 (9.8279)	loss-aux 0.1211 (0.1210)	grad_norm 4.4524 (nan)	loss_scale 1024.0000 (27283.8081)	mem 5328MB	batch_time 25.0075
+[32m[2023-01-05 04:48:44 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1120/54685]	eta 23:21:13 lr 0.001000	 wd 0.1000	time 1.6037 (1.5696)	loss 0.6329 (0.6218)	loss-cls 10.0087 (9.8280)	loss-aux 0.1177 (0.1210)	grad_norm 1.6448 (nan)	loss_scale 1024.0000 (26909.0027)	mem 5328MB	batch_time 24.9334
+[32m[2023-01-05 04:49:09 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1136/54685]	eta 23:20:41 lr 0.001000	 wd 0.1000	time 1.5411 (1.5694)	loss 0.6378 (0.6218)	loss-cls 10.0901 (9.8276)	loss-aux 0.1150 (0.1210)	grad_norm inf (nan)	loss_scale 512.0000 (26543.8452)	mem 5328MB	batch_time 24.9791
+[32m[2023-01-05 04:49:34 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1152/54685]	eta 23:20:10 lr 0.001000	 wd 0.1000	time 1.5218 (1.5693)	loss 0.6167 (0.6217)	loss-cls 9.7528 (9.8270)	loss-aux 0.1145 (0.1209)	grad_norm 1.0703 (nan)	loss_scale 512.0000 (26182.6054)	mem 5328MB	batch_time 24.9651
+[32m[2023-01-05 04:49:59 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1168/54685]	eta 23:19:39 lr 0.001000	 wd 0.1000	time 1.5478 (1.5692)	loss 0.6267 (0.6217)	loss-cls 9.9029 (9.8265)	loss-aux 0.1240 (0.1209)	grad_norm 10.7006 (nan)	loss_scale 512.0000 (25831.2541)	mem 5328MB	batch_time 25.0003
+[32m[2023-01-05 04:50:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1184/54685]	eta 23:19:07 lr 0.001000	 wd 0.1000	time 1.5681 (1.5691)	loss 0.6204 (0.6217)	loss-cls 9.8063 (9.8269)	loss-aux 0.1196 (0.1209)	grad_norm 3.4341 (nan)	loss_scale 512.0000 (25489.3907)	mem 5328MB	batch_time 24.9480
+[32m[2023-01-05 04:50:49 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1200/54685]	eta 23:18:35 lr 0.001000	 wd 0.1000	time 1.5652 (1.5690)	loss 0.6006 (0.6216)	loss-cls 9.4925 (9.8252)	loss-aux 0.1168 (0.1208)	grad_norm 1.8752 (nan)	loss_scale 512.0000 (25156.6361)	mem 5328MB	batch_time 24.9479
+[32m[2023-01-05 04:51:14 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1216/54685]	eta 23:18:02 lr 0.001000	 wd 0.1000	time 1.5441 (1.5688)	loss 0.6225 (0.6216)	loss-cls 9.8378 (9.8243)	loss-aux 0.1218 (0.1208)	grad_norm 8.1623 (nan)	loss_scale 512.0000 (24832.6311)	mem 5328MB	batch_time 24.9346
+[32m[2023-01-05 04:51:39 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1232/54685]	eta 23:17:32 lr 0.001000	 wd 0.1000	time 1.5730 (1.5687)	loss 0.6227 (0.6216)	loss-cls 9.8459 (9.8242)	loss-aux 0.1171 (0.1207)	grad_norm 10.2416 (nan)	loss_scale 512.0000 (24517.0349)	mem 5328MB	batch_time 24.9782
+[32m[2023-01-05 04:52:04 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1248/54685]	eta 23:17:04 lr 0.001000	 wd 0.1000	time 1.5762 (1.5687)	loss 0.6227 (0.6215)	loss-cls 9.8465 (9.8240)	loss-aux 0.1173 (0.1206)	grad_norm 11.1251 (nan)	loss_scale 512.0000 (24209.5244)	mem 5328MB	batch_time 25.0348
+[32m[2023-01-05 04:52:29 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1264/54685]	eta 23:16:34 lr 0.001000	 wd 0.1000	time 1.5649 (1.5686)	loss 0.6131 (0.6215)	loss-cls 9.6973 (9.8239)	loss-aux 0.1129 (0.1206)	grad_norm 2.6006 (nan)	loss_scale 512.0000 (23909.7929)	mem 5328MB	batch_time 24.9713
+[32m[2023-01-05 04:52:54 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1280/54685]	eta 23:16:02 lr 0.001000	 wd 0.1000	time 1.5752 (1.5684)	loss 0.6153 (0.6215)	loss-cls 9.7305 (9.8242)	loss-aux 0.1150 (0.1205)	grad_norm 4.6546 (nan)	loss_scale 512.0000 (23617.5488)	mem 5328MB	batch_time 24.9359
+[32m[2023-01-05 04:53:19 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1296/54685]	eta 23:15:31 lr 0.001000	 wd 0.1000	time 1.5517 (1.5683)	loss 0.6126 (0.6215)	loss-cls 9.6863 (9.8229)	loss-aux 0.1146 (0.1205)	grad_norm 9.0827 (nan)	loss_scale 512.0000 (23332.5150)	mem 5328MB	batch_time 24.9496
+[32m[2023-01-05 04:53:44 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1312/54685]	eta 23:14:58 lr 0.001000	 wd 0.1000	time 1.5483 (1.5682)	loss 0.6204 (0.6214)	loss-cls 9.8120 (9.8223)	loss-aux 0.1140 (0.1205)	grad_norm 4.7401 (nan)	loss_scale 512.0000 (23054.4280)	mem 5328MB	batch_time 24.8989
+[32m[2023-01-05 04:54:09 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1328/54685]	eta 23:14:30 lr 0.001000	 wd 0.1000	time 1.5751 (1.5681)	loss 0.6224 (0.6214)	loss-cls 9.8417 (9.8215)	loss-aux 0.1160 (0.1204)	grad_norm 37.4091 (nan)	loss_scale 512.0000 (22783.0369)	mem 5328MB	batch_time 25.0257
+[32m[2023-01-05 04:54:34 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1344/54685]	eta 23:13:59 lr 0.001000	 wd 0.1000	time 1.5219 (1.5680)	loss 0.6231 (0.6213)	loss-cls 9.8553 (9.8207)	loss-aux 0.1144 (0.1203)	grad_norm 1.2267 (nan)	loss_scale 512.0000 (22518.1026)	mem 5328MB	batch_time 24.9381
+[32m[2023-01-05 04:54:59 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1360/54685]	eta 23:13:28 lr 0.001000	 wd 0.1000	time 1.5685 (1.5679)	loss 0.6153 (0.6212)	loss-cls 9.7293 (9.8197)	loss-aux 0.1148 (0.1203)	grad_norm 1.9399 (nan)	loss_scale 512.0000 (22259.3975)	mem 5328MB	batch_time 24.9353
+[32m[2023-01-05 04:55:24 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1376/54685]	eta 23:13:00 lr 0.001000	 wd 0.1000	time 1.5541 (1.5679)	loss 0.6132 (0.6212)	loss-cls 9.6962 (9.8196)	loss-aux 0.1146 (0.1203)	grad_norm 1.3541 (nan)	loss_scale 512.0000 (22006.7044)	mem 5328MB	batch_time 25.0231
+[32m[2023-01-05 04:55:49 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1392/54685]	eta 23:12:32 lr 0.001000	 wd 0.1000	time 1.5546 (1.5678)	loss 0.6106 (0.6212)	loss-cls 9.6512 (9.8192)	loss-aux 0.1181 (0.1202)	grad_norm 2.8948 (nan)	loss_scale 512.0000 (21759.8162)	mem 5328MB	batch_time 25.0074
+[32m[2023-01-05 04:56:14 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1408/54685]	eta 23:12:05 lr 0.001000	 wd 0.1000	time 1.5659 (1.5678)	loss 0.6213 (0.6212)	loss-cls 9.8227 (9.8190)	loss-aux 0.1179 (0.1202)	grad_norm 1.7148 (nan)	loss_scale 512.0000 (21518.5351)	mem 5328MB	batch_time 25.0335
+[32m[2023-01-05 04:56:39 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1424/54685]	eta 23:11:35 lr 0.001000	 wd 0.1000	time 1.5491 (1.5677)	loss 0.6258 (0.6212)	loss-cls 9.8951 (9.8185)	loss-aux 0.1180 (0.1202)	grad_norm 2.4359 (nan)	loss_scale 512.0000 (21282.6723)	mem 5328MB	batch_time 24.9400
+[32m[2023-01-05 04:57:04 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1440/54685]	eta 23:11:07 lr 0.001000	 wd 0.1000	time 1.5474 (1.5676)	loss 0.6165 (0.6211)	loss-cls 9.7354 (9.8180)	loss-aux 0.1281 (0.1202)	grad_norm 15.2424 (nan)	loss_scale 512.0000 (21052.0472)	mem 5328MB	batch_time 25.0215
+[32m[2023-01-05 04:57:29 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1456/54685]	eta 23:10:39 lr 0.001000	 wd 0.1000	time 1.5526 (1.5676)	loss 0.6125 (0.6211)	loss-cls 9.6760 (9.8172)	loss-aux 0.1233 (0.1203)	grad_norm 14.8016 (nan)	loss_scale 512.0000 (20826.4873)	mem 5328MB	batch_time 24.9860
+[32m[2023-01-05 04:57:54 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1472/54685]	eta 23:10:08 lr 0.001000	 wd 0.1000	time 1.5476 (1.5674)	loss 0.6173 (0.6211)	loss-cls 9.7486 (9.8170)	loss-aux 0.1283 (0.1204)	grad_norm 4.7226 (nan)	loss_scale 512.0000 (20605.8276)	mem 5328MB	batch_time 24.9246
+[32m[2023-01-05 04:58:19 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1488/54685]	eta 23:09:39 lr 0.001000	 wd 0.1000	time 1.5395 (1.5674)	loss 0.6316 (0.6211)	loss-cls 9.9830 (9.8171)	loss-aux 0.1223 (0.1204)	grad_norm 17.0749 (nan)	loss_scale 512.0000 (20389.9100)	mem 5328MB	batch_time 24.9552
+[32m[2023-01-05 04:58:43 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1504/54685]	eta 23:09:09 lr 0.001000	 wd 0.1000	time 1.5636 (1.5673)	loss 0.6096 (0.6210)	loss-cls 9.6276 (9.8160)	loss-aux 0.1262 (0.1205)	grad_norm inf (nan)	loss_scale 256.0000 (20178.2432)	mem 5328MB	batch_time 24.9563
+[32m[2023-01-05 04:59:08 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1520/54685]	eta 23:08:39 lr 0.001000	 wd 0.1000	time 1.5423 (1.5672)	loss 0.6021 (0.6210)	loss-cls 9.5214 (9.8153)	loss-aux 0.1129 (0.1205)	grad_norm 6.5955 (nan)	loss_scale 256.0000 (19968.6732)	mem 5328MB	batch_time 24.9397
+[32m[2023-01-05 04:59:33 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1536/54685]	eta 23:08:13 lr 0.001000	 wd 0.1000	time 1.5550 (1.5672)	loss 0.6165 (0.6210)	loss-cls 9.6785 (9.8147)	loss-aux 0.1856 (0.1206)	grad_norm 17.8660 (nan)	loss_scale 256.0000 (19763.4665)	mem 5328MB	batch_time 25.0286
+[32m[2023-01-05 04:59:58 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1552/54685]	eta 23:07:44 lr 0.001000	 wd 0.1000	time 1.5585 (1.5671)	loss 0.6439 (0.6211)	loss-cls 9.9507 (9.8156)	loss-aux 0.3509 (0.1213)	grad_norm 19.2152 (nan)	loss_scale 256.0000 (19562.4881)	mem 5328MB	batch_time 24.9574
+[32m[2023-01-05 05:00:23 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1568/54685]	eta 23:07:15 lr 0.001000	 wd 0.1000	time 1.5538 (1.5670)	loss 0.6227 (0.6212)	loss-cls 9.7035 (9.8148)	loss-aux 0.2597 (0.1236)	grad_norm 3.9337 (nan)	loss_scale 256.0000 (19365.6087)	mem 5328MB	batch_time 24.9703
+[32m[2023-01-05 05:00:48 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1584/54685]	eta 23:06:47 lr 0.001000	 wd 0.1000	time 1.5847 (1.5670)	loss 0.6043 (0.6212)	loss-cls 9.4775 (9.8147)	loss-aux 0.1914 (0.1248)	grad_norm 1.6090 (nan)	loss_scale 256.0000 (19172.7041)	mem 5328MB	batch_time 24.9952
+[32m[2023-01-05 05:01:13 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1600/54685]	eta 23:06:21 lr 0.001000	 wd 0.1000	time 1.5435 (1.5669)	loss 0.6291 (0.6213)	loss-cls 9.8808 (9.8147)	loss-aux 0.1841 (0.1256)	grad_norm 8.7173 (nan)	loss_scale 256.0000 (18983.6552)	mem 5328MB	batch_time 25.0244
+[32m[2023-01-05 05:01:38 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1616/54685]	eta 23:05:50 lr 0.001000	 wd 0.1000	time 1.5473 (1.5668)	loss 0.6132 (0.6213)	loss-cls 9.6225 (9.8141)	loss-aux 0.1891 (0.1262)	grad_norm 5.4213 (nan)	loss_scale 256.0000 (18798.3476)	mem 5328MB	batch_time 24.9033
+[32m[2023-01-05 05:02:03 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1632/54685]	eta 23:05:24 lr 0.001000	 wd 0.1000	time 1.5757 (1.5668)	loss 0.6333 (0.6213)	loss-cls 9.9621 (9.8135)	loss-aux 0.1710 (0.1268)	grad_norm 4.1796 (nan)	loss_scale 256.0000 (18616.6712)	mem 5328MB	batch_time 25.0228
+[32m[2023-01-05 05:02:28 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1648/54685]	eta 23:04:57 lr 0.001000	 wd 0.1000	time 1.5534 (1.5668)	loss 0.6115 (0.6213)	loss-cls 9.6002 (9.8129)	loss-aux 0.1844 (0.1272)	grad_norm 5.7480 (nan)	loss_scale 256.0000 (18438.5203)	mem 5328MB	batch_time 25.0353
+[32m[2023-01-05 05:02:53 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1664/54685]	eta 23:04:27 lr 0.001000	 wd 0.1000	time 1.5408 (1.5667)	loss 0.6301 (0.6213)	loss-cls 9.9221 (9.8123)	loss-aux 0.1589 (0.1277)	grad_norm 1.8310 (nan)	loss_scale 256.0000 (18263.7934)	mem 5328MB	batch_time 24.9140
+[32m[2023-01-05 05:03:18 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1680/54685]	eta 23:04:00 lr 0.001000	 wd 0.1000	time 1.5615 (1.5667)	loss 0.6034 (0.6212)	loss-cls 9.5076 (9.8116)	loss-aux 0.1472 (0.1280)	grad_norm 1.7222 (nan)	loss_scale 256.0000 (18092.3926)	mem 5328MB	batch_time 25.0013
+[32m[2023-01-05 05:03:43 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1696/54685]	eta 23:03:33 lr 0.001000	 wd 0.1000	time 1.5170 (1.5666)	loss 0.6288 (0.6212)	loss-cls 9.8595 (9.8108)	loss-aux 0.2010 (0.1284)	grad_norm 2.7913 (nan)	loss_scale 256.0000 (17924.2239)	mem 5328MB	batch_time 24.9809
+[32m[2023-01-05 05:04:08 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1712/54685]	eta 23:03:07 lr 0.001000	 wd 0.1000	time 1.5793 (1.5666)	loss 0.6157 (0.6212)	loss-cls 9.6518 (9.8097)	loss-aux 0.1989 (0.1289)	grad_norm 1.9438 (nan)	loss_scale 256.0000 (17759.1967)	mem 5328MB	batch_time 25.0397
+[32m[2023-01-05 05:04:33 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1728/54685]	eta 23:02:39 lr 0.001000	 wd 0.1000	time 1.5208 (1.5665)	loss 0.6125 (0.6212)	loss-cls 9.6252 (9.8094)	loss-aux 0.1751 (0.1294)	grad_norm 2.0520 (nan)	loss_scale 256.0000 (17597.2238)	mem 5328MB	batch_time 24.9728
+[32m[2023-01-05 05:04:58 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1744/54685]	eta 23:02:12 lr 0.001000	 wd 0.1000	time 1.5381 (1.5665)	loss 0.6115 (0.6212)	loss-cls 9.5850 (9.8086)	loss-aux 0.1995 (0.1299)	grad_norm 1.2878 (nan)	loss_scale 256.0000 (17438.2212)	mem 5328MB	batch_time 25.0075
+[32m[2023-01-05 05:05:23 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1760/54685]	eta 23:01:44 lr 0.001000	 wd 0.1000	time 1.5443 (1.5665)	loss 0.6326 (0.6212)	loss-cls 9.9198 (9.8082)	loss-aux 0.2016 (0.1304)	grad_norm 10.4039 (nan)	loss_scale 256.0000 (17282.1079)	mem 5328MB	batch_time 24.9672
+[32m[2023-01-05 05:05:48 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1776/54685]	eta 23:01:15 lr 0.001000	 wd 0.1000	time 1.5568 (1.5664)	loss 0.6167 (0.6212)	loss-cls 9.6774 (9.8077)	loss-aux 0.1892 (0.1309)	grad_norm 2.9068 (nan)	loss_scale 256.0000 (17128.8059)	mem 5328MB	batch_time 24.9191
+[32m[2023-01-05 05:06:13 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1792/54685]	eta 23:00:46 lr 0.001000	 wd 0.1000	time 1.5301 (1.5663)	loss 0.6278 (0.6212)	loss-cls 9.8731 (9.8071)	loss-aux 0.1711 (0.1314)	grad_norm 2.2074 (nan)	loss_scale 256.0000 (16978.2398)	mem 5328MB	batch_time 24.9456
+[32m[2023-01-05 05:06:38 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1808/54685]	eta 23:00:16 lr 0.001000	 wd 0.1000	time 1.5565 (1.5662)	loss 0.6613 (0.6213)	loss-cls 10.3669 (9.8082)	loss-aux 0.2143 (0.1320)	grad_norm 4.6203 (nan)	loss_scale 256.0000 (16830.3372)	mem 5328MB	batch_time 24.8826
+[32m[2023-01-05 05:07:03 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1824/54685]	eta 22:59:49 lr 0.001000	 wd 0.1000	time 1.5710 (1.5662)	loss 0.6260 (0.6213)	loss-cls 9.8383 (9.8076)	loss-aux 0.1777 (0.1327)	grad_norm 4.4320 (nan)	loss_scale 256.0000 (16685.0279)	mem 5329MB	batch_time 24.9950
+[32m[2023-01-05 05:07:28 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1840/54685]	eta 22:59:20 lr 0.001000	 wd 0.1000	time 1.5855 (1.5661)	loss 0.6109 (0.6213)	loss-cls 9.5929 (9.8078)	loss-aux 0.1818 (0.1333)	grad_norm 2.7421 (nan)	loss_scale 256.0000 (16542.2444)	mem 5329MB	batch_time 24.9336
+[32m[2023-01-05 05:07:53 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1856/54685]	eta 22:58:52 lr 0.001000	 wd 0.1000	time 1.5383 (1.5660)	loss 0.6200 (0.6213)	loss-cls 9.7417 (9.8074)	loss-aux 0.1789 (0.1338)	grad_norm 2.3853 (nan)	loss_scale 256.0000 (16401.9214)	mem 5329MB	batch_time 24.9332
+[32m[2023-01-05 05:08:18 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1872/54685]	eta 22:58:23 lr 0.001000	 wd 0.1000	time 1.5611 (1.5660)	loss 0.6147 (0.6213)	loss-cls 9.6454 (9.8072)	loss-aux 0.1905 (0.1342)	grad_norm 2.2223 (nan)	loss_scale 256.0000 (16263.9957)	mem 5329MB	batch_time 24.9273
+[32m[2023-01-05 05:08:43 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1888/54685]	eta 22:57:53 lr 0.001000	 wd 0.1000	time 1.5905 (1.5659)	loss 0.6387 (0.6213)	loss-cls 10.0108 (9.8068)	loss-aux 0.2087 (0.1347)	grad_norm 1.8090 (nan)	loss_scale 256.0000 (16128.4066)	mem 5329MB	batch_time 24.8620
+[32m[2023-01-05 05:09:08 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1904/54685]	eta 22:57:25 lr 0.001000	 wd 0.1000	time 1.5466 (1.5658)	loss 0.6127 (0.6213)	loss-cls 9.5855 (9.8056)	loss-aux 0.2177 (0.1354)	grad_norm 1.3570 (nan)	loss_scale 256.0000 (15995.0950)	mem 5329MB	batch_time 24.9702
+[32m[2023-01-05 05:09:33 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1920/54685]	eta 22:56:56 lr 0.001000	 wd 0.1000	time 1.5286 (1.5657)	loss 0.6451 (0.6214)	loss-cls 10.1281 (9.8059)	loss-aux 0.1928 (0.1359)	grad_norm 4.5298 (nan)	loss_scale 256.0000 (15864.0042)	mem 5329MB	batch_time 24.9023
+[32m[2023-01-05 05:09:57 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1936/54685]	eta 22:56:28 lr 0.001000	 wd 0.1000	time 1.5608 (1.5657)	loss 0.6315 (0.6214)	loss-cls 9.8956 (9.8054)	loss-aux 0.2081 (0.1366)	grad_norm 1.7544 (nan)	loss_scale 256.0000 (15735.0790)	mem 5329MB	batch_time 24.9442
+[32m[2023-01-05 05:10:22 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1952/54685]	eta 22:56:02 lr 0.001000	 wd 0.1000	time 1.5568 (1.5657)	loss 0.6655 (0.6214)	loss-cls 10.4220 (9.8054)	loss-aux 0.2256 (0.1372)	grad_norm 4.9184 (nan)	loss_scale 256.0000 (15608.2663)	mem 5329MB	batch_time 25.0010
+[32m[2023-01-05 05:10:47 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1968/54685]	eta 22:55:33 lr 0.001000	 wd 0.1000	time 1.5317 (1.5656)	loss 0.6323 (0.6214)	loss-cls 9.9292 (9.8047)	loss-aux 0.1874 (0.1379)	grad_norm 5.6786 (nan)	loss_scale 256.0000 (15483.5145)	mem 5329MB	batch_time 24.9062
+[32m[2023-01-05 05:11:12 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][1984/54685]	eta 22:55:07 lr 0.001000	 wd 0.1000	time 1.5665 (1.5656)	loss 0.6148 (0.6214)	loss-cls 9.6117 (9.8040)	loss-aux 0.2248 (0.1384)	grad_norm 1.3770 (nan)	loss_scale 256.0000 (15360.7738)	mem 5329MB	batch_time 25.0298
+[32m[2023-01-05 05:11:37 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2000/54685]	eta 22:54:38 lr 0.001000	 wd 0.1000	time 1.5673 (1.5655)	loss 0.6150 (0.6214)	loss-cls 9.6085 (9.8033)	loss-aux 0.2313 (0.1392)	grad_norm 2.0319 (nan)	loss_scale 256.0000 (15239.9960)	mem 5329MB	batch_time 24.9022
+[32m[2023-01-05 05:12:02 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2016/54685]	eta 22:54:11 lr 0.001000	 wd 0.1000	time 1.5522 (1.5655)	loss 0.6183 (0.6214)	loss-cls 9.6598 (9.8026)	loss-aux 0.2337 (0.1398)	grad_norm 1.6167 (nan)	loss_scale 256.0000 (15121.1344)	mem 5329MB	batch_time 24.9553
+[32m[2023-01-05 05:12:27 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2032/54685]	eta 22:53:45 lr 0.001000	 wd 0.1000	time 1.5497 (1.5654)	loss 0.6155 (0.6214)	loss-cls 9.6035 (9.8024)	loss-aux 0.2441 (0.1406)	grad_norm 1.7861 (nan)	loss_scale 256.0000 (15004.1436)	mem 5329MB	batch_time 25.0051
+[32m[2023-01-05 05:12:52 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2048/54685]	eta 22:53:18 lr 0.001000	 wd 0.1000	time 1.5414 (1.5654)	loss 0.6265 (0.6215)	loss-cls 9.7747 (9.8023)	loss-aux 0.2489 (0.1414)	grad_norm 1.9072 (nan)	loss_scale 256.0000 (14888.9800)	mem 5329MB	batch_time 24.9712
+[32m[2023-01-05 05:13:17 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2064/54685]	eta 22:52:54 lr 0.001000	 wd 0.1000	time 1.5563 (1.5654)	loss 0.6271 (0.6215)	loss-cls 9.7758 (9.8018)	loss-aux 0.2572 (0.1422)	grad_norm 3.9465 (nan)	loss_scale 256.0000 (14775.6010)	mem 5329MB	batch_time 25.1039
+[32m[2023-01-05 05:13:42 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2080/54685]	eta 22:52:25 lr 0.001000	 wd 0.1000	time 1.5401 (1.5654)	loss 0.6089 (0.6215)	loss-cls 9.5080 (9.8011)	loss-aux 0.2339 (0.1429)	grad_norm 1.3864 (nan)	loss_scale 256.0000 (14663.9654)	mem 5329MB	batch_time 24.9071
+[32m[2023-01-05 05:14:07 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2096/54685]	eta 22:52:02 lr 0.001000	 wd 0.1000	time 1.5428 (1.5654)	loss 0.6170 (0.6215)	loss-cls 9.6414 (9.8002)	loss-aux 0.2312 (0.1437)	grad_norm 1.5932 (nan)	loss_scale 256.0000 (14554.0334)	mem 5329MB	batch_time 25.1112
+[32m[2023-01-05 05:14:32 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2112/54685]	eta 22:51:36 lr 0.001000	 wd 0.1000	time 1.5632 (1.5654)	loss 0.6204 (0.6215)	loss-cls 9.6736 (9.8001)	loss-aux 0.2530 (0.1444)	grad_norm 1.6455 (nan)	loss_scale 256.0000 (14445.7662)	mem 5329MB	batch_time 24.9903
+[32m[2023-01-05 05:14:57 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2128/54685]	eta 22:51:08 lr 0.001000	 wd 0.1000	time 1.5562 (1.5653)	loss 0.6302 (0.6216)	loss-cls 9.8453 (9.7997)	loss-aux 0.2383 (0.1451)	grad_norm 3.6744 (nan)	loss_scale 256.0000 (14339.1264)	mem 5329MB	batch_time 24.9370
+[32m[2023-01-05 05:15:22 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2144/54685]	eta 22:50:43 lr 0.001000	 wd 0.1000	time 1.5830 (1.5653)	loss 0.6423 (0.6216)	loss-cls 10.0159 (9.7992)	loss-aux 0.2602 (0.1460)	grad_norm 6.5890 (nan)	loss_scale 256.0000 (14234.0774)	mem 5329MB	batch_time 25.0461
+[32m[2023-01-05 05:15:47 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2160/54685]	eta 22:50:16 lr 0.001000	 wd 0.1000	time 1.5676 (1.5653)	loss 0.6401 (0.6216)	loss-cls 9.9895 (9.7990)	loss-aux 0.2522 (0.1468)	grad_norm 3.4725 (nan)	loss_scale 256.0000 (14130.5840)	mem 5329MB	batch_time 24.9943
+[32m[2023-01-05 05:16:12 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2176/54685]	eta 22:49:49 lr 0.001000	 wd 0.1000	time 1.5238 (1.5652)	loss 0.6204 (0.6217)	loss-cls 9.6562 (9.7990)	loss-aux 0.2707 (0.1475)	grad_norm 21.2142 (nan)	loss_scale 256.0000 (14028.6119)	mem 5329MB	batch_time 24.9522
+[32m[2023-01-05 05:16:37 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2192/54685]	eta 22:49:20 lr 0.001000	 wd 0.1000	time 1.5444 (1.5652)	loss 0.6458 (0.6217)	loss-cls 10.0842 (9.7986)	loss-aux 0.2491 (0.1485)	grad_norm 18.1432 (nan)	loss_scale 256.0000 (13928.1277)	mem 5329MB	batch_time 24.8726
+[32m[2023-01-05 05:17:02 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2208/54685]	eta 22:48:53 lr 0.001000	 wd 0.1000	time 1.5356 (1.5651)	loss 0.6138 (0.6217)	loss-cls 9.5916 (9.7981)	loss-aux 0.2286 (0.1493)	grad_norm 3.8234 (nan)	loss_scale 256.0000 (13829.0991)	mem 5329MB	batch_time 24.9616
+[32m[2023-01-05 05:17:27 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2224/54685]	eta 22:48:26 lr 0.001000	 wd 0.1000	time 1.5487 (1.5651)	loss 0.6179 (0.6217)	loss-cls 9.6441 (9.7978)	loss-aux 0.2422 (0.1499)	grad_norm 17.8955 (nan)	loss_scale 256.0000 (13731.4948)	mem 5329MB	batch_time 24.9517
+[32m[2023-01-05 05:17:52 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2240/54685]	eta 22:47:58 lr 0.001000	 wd 0.1000	time 1.5470 (1.5650)	loss 0.6415 (0.6218)	loss-cls 10.0603 (9.7979)	loss-aux 0.2032 (0.1505)	grad_norm 3.5897 (nan)	loss_scale 256.0000 (13635.2842)	mem 5329MB	batch_time 24.9335
+[32m[2023-01-05 05:18:17 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2256/54685]	eta 22:47:35 lr 0.001000	 wd 0.1000	time 1.5710 (1.5651)	loss 0.6146 (0.6218)	loss-cls 9.6152 (9.7972)	loss-aux 0.2185 (0.1510)	grad_norm 28.2501 (nan)	loss_scale 256.0000 (13540.4377)	mem 5329MB	batch_time 25.0983
+[32m[2023-01-05 05:18:42 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2272/54685]	eta 22:47:08 lr 0.001000	 wd 0.1000	time 1.5372 (1.5650)	loss 0.6304 (0.6218)	loss-cls 9.8683 (9.7973)	loss-aux 0.2180 (0.1515)	grad_norm 13.2084 (nan)	loss_scale 256.0000 (13446.9265)	mem 5329MB	batch_time 24.9672
+[32m[2023-01-05 05:19:07 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2288/54685]	eta 22:46:41 lr 0.001000	 wd 0.1000	time 1.5519 (1.5650)	loss 0.6275 (0.6218)	loss-cls 9.8338 (9.7968)	loss-aux 0.2054 (0.1519)	grad_norm 2.2530 (nan)	loss_scale 256.0000 (13354.7226)	mem 5329MB	batch_time 24.9575
+[32m[2023-01-05 05:19:32 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2304/54685]	eta 22:46:12 lr 0.001000	 wd 0.1000	time 1.5493 (1.5649)	loss 0.6278 (0.6219)	loss-cls 9.8341 (9.7976)	loss-aux 0.2108 (0.1523)	grad_norm 2.5272 (nan)	loss_scale 256.0000 (13263.7987)	mem 5329MB	batch_time 24.8828
+[32m[2023-01-05 05:19:57 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2320/54685]	eta 22:45:46 lr 0.001000	 wd 0.1000	time 1.5793 (1.5649)	loss 0.6443 (0.6219)	loss-cls 10.0942 (9.7973)	loss-aux 0.2139 (0.1526)	grad_norm 4.7012 (nan)	loss_scale 256.0000 (13174.1284)	mem 5329MB	batch_time 24.9646
+[32m[2023-01-05 05:20:22 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2336/54685]	eta 22:45:20 lr 0.001000	 wd 0.1000	time 1.5848 (1.5649)	loss 0.6285 (0.6219)	loss-cls 9.8598 (9.7970)	loss-aux 0.1965 (0.1529)	grad_norm 25.2679 (nan)	loss_scale 256.0000 (13085.6859)	mem 5329MB	batch_time 25.0125
+[32m[2023-01-05 05:20:47 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2352/54685]	eta 22:44:52 lr 0.001000	 wd 0.1000	time 1.5633 (1.5648)	loss 0.6157 (0.6219)	loss-cls 9.6047 (9.7969)	loss-aux 0.2468 (0.1534)	grad_norm 10.1982 (nan)	loss_scale 256.0000 (12998.4462)	mem 5329MB	batch_time 24.9115
+[32m[2023-01-05 05:21:12 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2368/54685]	eta 22:44:26 lr 0.001000	 wd 0.1000	time 1.5890 (1.5648)	loss 0.6351 (0.6219)	loss-cls 9.9846 (9.7966)	loss-aux 0.1777 (0.1539)	grad_norm 16.0506 (nan)	loss_scale 256.0000 (12912.3850)	mem 5329MB	batch_time 24.9947
+[32m[2023-01-05 05:21:37 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2384/54685]	eta 22:44:02 lr 0.001000	 wd 0.1000	time 1.5570 (1.5648)	loss 0.6403 (0.6220)	loss-cls 10.0061 (9.7968)	loss-aux 0.2388 (0.1544)	grad_norm 9.1617 (nan)	loss_scale 256.0000 (12827.4784)	mem 5329MB	batch_time 25.0696
+[32m[2023-01-05 05:22:02 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2400/54685]	eta 22:43:35 lr 0.001000	 wd 0.1000	time 1.5438 (1.5648)	loss 0.6346 (0.6220)	loss-cls 9.9465 (9.7970)	loss-aux 0.2070 (0.1548)	grad_norm 15.6047 (nan)	loss_scale 256.0000 (12743.7035)	mem 5329MB	batch_time 24.9467
+[32m[2023-01-05 05:22:27 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2416/54685]	eta 22:43:10 lr 0.001000	 wd 0.1000	time 1.5721 (1.5648)	loss 0.6050 (0.6220)	loss-cls 9.4695 (9.7969)	loss-aux 0.2100 (0.1552)	grad_norm 14.8502 (nan)	loss_scale 256.0000 (12661.0376)	mem 5329MB	batch_time 25.0493
+[32m[2023-01-05 05:22:52 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2432/54685]	eta 22:42:43 lr 0.001000	 wd 0.1000	time 1.5468 (1.5648)	loss 0.6396 (0.6220)	loss-cls 10.0547 (9.7964)	loss-aux 0.1787 (0.1556)	grad_norm 20.7538 (nan)	loss_scale 256.0000 (12579.4591)	mem 5329MB	batch_time 24.9574
+[32m[2023-01-05 05:23:17 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2448/54685]	eta 22:42:19 lr 0.001000	 wd 0.1000	time 1.5631 (1.5648)	loss 0.6415 (0.6220)	loss-cls 10.0562 (9.7962)	loss-aux 0.2075 (0.1559)	grad_norm 8.0351 (nan)	loss_scale 256.0000 (12498.9465)	mem 5329MB	batch_time 25.0585
+[32m[2023-01-05 05:23:42 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2464/54685]	eta 22:41:52 lr 0.001000	 wd 0.1000	time 1.5827 (1.5647)	loss 0.6110 (0.6220)	loss-cls 9.5762 (9.7963)	loss-aux 0.1991 (0.1561)	grad_norm 6.5792 (nan)	loss_scale 256.0000 (12419.4791)	mem 5329MB	batch_time 24.9404
+[32m[2023-01-05 05:24:07 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2480/54685]	eta 22:41:25 lr 0.001000	 wd 0.1000	time 1.5444 (1.5647)	loss 0.6273 (0.6220)	loss-cls 9.8517 (9.7961)	loss-aux 0.1859 (0.1564)	grad_norm 4.1879 (nan)	loss_scale 256.0000 (12341.0367)	mem 5329MB	batch_time 24.9474
+[32m[2023-01-05 05:24:32 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2496/54685]	eta 22:40:59 lr 0.001000	 wd 0.1000	time 1.5607 (1.5647)	loss 0.6186 (0.6221)	loss-cls 9.7100 (9.7966)	loss-aux 0.1878 (0.1564)	grad_norm 10.5030 (nan)	loss_scale 256.0000 (12263.5995)	mem 5329MB	batch_time 24.9842
+[32m[2023-01-05 05:24:57 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2512/54685]	eta 22:40:33 lr 0.001000	 wd 0.1000	time 1.5414 (1.5647)	loss 0.6061 (0.6221)	loss-cls 9.5226 (9.7977)	loss-aux 0.1750 (0.1566)	grad_norm 11.3821 (nan)	loss_scale 256.0000 (12187.1484)	mem 5329MB	batch_time 25.0139
+[32m[2023-01-05 05:25:22 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2528/54685]	eta 22:40:09 lr 0.001000	 wd 0.1000	time 1.6105 (1.5647)	loss 0.6402 (0.6222)	loss-cls 10.0647 (9.7978)	loss-aux 0.1792 (0.1567)	grad_norm 3.4991 (nan)	loss_scale 256.0000 (12111.6647)	mem 5329MB	batch_time 25.0523
+[32m[2023-01-05 05:25:47 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2544/54685]	eta 22:39:41 lr 0.001000	 wd 0.1000	time 1.5859 (1.5646)	loss 0.6341 (0.6222)	loss-cls 9.9617 (9.7985)	loss-aux 0.1844 (0.1569)	grad_norm 1.8420 (nan)	loss_scale 256.0000 (12037.1301)	mem 5329MB	batch_time 24.9189
+[32m[2023-01-05 05:26:12 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2560/54685]	eta 22:39:15 lr 0.001000	 wd 0.1000	time 1.5590 (1.5646)	loss 0.6261 (0.6222)	loss-cls 9.8503 (9.7985)	loss-aux 0.1667 (0.1570)	grad_norm 11.8921 (nan)	loss_scale 256.0000 (11963.5267)	mem 5329MB	batch_time 24.9921
+[32m[2023-01-05 05:26:37 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2576/54685]	eta 22:38:50 lr 0.001000	 wd 0.1000	time 1.5493 (1.5646)	loss 0.6281 (0.6222)	loss-cls 9.8783 (9.7986)	loss-aux 0.1716 (0.1572)	grad_norm 6.4761 (nan)	loss_scale 256.0000 (11890.8374)	mem 5329MB	batch_time 25.0269
+[32m[2023-01-05 05:27:02 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2592/54685]	eta 22:38:24 lr 0.001000	 wd 0.1000	time 1.5564 (1.5646)	loss 0.5977 (0.6222)	loss-cls 9.3924 (9.7985)	loss-aux 0.1706 (0.1573)	grad_norm 10.3654 (nan)	loss_scale 256.0000 (11819.0451)	mem 5329MB	batch_time 24.9830
+[32m[2023-01-05 05:27:27 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2608/54685]	eta 22:38:03 lr 0.001000	 wd 0.1000	time 1.5587 (1.5647)	loss 0.6248 (0.6223)	loss-cls 9.8257 (9.7986)	loss-aux 0.1711 (0.1574)	grad_norm 8.7542 (nan)	loss_scale 256.0000 (11748.1334)	mem 5329MB	batch_time 25.2313
+[32m[2023-01-05 05:27:52 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2624/54685]	eta 22:37:37 lr 0.001000	 wd 0.1000	time 1.5700 (1.5647)	loss 0.6122 (0.6222)	loss-cls 9.6267 (9.7984)	loss-aux 0.1684 (0.1575)	grad_norm 8.0568 (nan)	loss_scale 256.0000 (11678.0861)	mem 5329MB	batch_time 25.0007
+[32m[2023-01-05 05:28:17 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2640/54685]	eta 22:37:11 lr 0.001000	 wd 0.1000	time 1.5385 (1.5646)	loss 0.6116 (0.6222)	loss-cls 9.5983 (9.7983)	loss-aux 0.1870 (0.1576)	grad_norm 43.1330 (nan)	loss_scale 256.0000 (11608.8875)	mem 5329MB	batch_time 24.9646
+[32m[2023-01-05 05:28:42 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2656/54685]	eta 22:36:44 lr 0.001000	 wd 0.1000	time 1.5740 (1.5646)	loss 0.6217 (0.6223)	loss-cls 9.7791 (9.7984)	loss-aux 0.1683 (0.1578)	grad_norm 8.3724 (nan)	loss_scale 256.0000 (11540.5224)	mem 5329MB	batch_time 24.9464
+[32m[2023-01-05 05:29:07 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2672/54685]	eta 22:36:19 lr 0.001000	 wd 0.1000	time 1.5379 (1.5646)	loss 0.6255 (0.6222)	loss-cls 9.8450 (9.7980)	loss-aux 0.1638 (0.1578)	grad_norm 5.7630 (nan)	loss_scale 256.0000 (11472.9757)	mem 5329MB	batch_time 25.0231
+[32m[2023-01-05 05:29:32 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2688/54685]	eta 22:35:52 lr 0.001000	 wd 0.1000	time 1.5484 (1.5646)	loss 0.6121 (0.6223)	loss-cls 9.6325 (9.7984)	loss-aux 0.1607 (0.1579)	grad_norm 6.0128 (nan)	loss_scale 256.0000 (11406.2328)	mem 5329MB	batch_time 24.9324
+[32m[2023-01-05 05:29:57 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2704/54685]	eta 22:35:25 lr 0.001000	 wd 0.1000	time 1.5655 (1.5645)	loss 0.6052 (0.6223)	loss-cls 9.5245 (9.7985)	loss-aux 0.1591 (0.1579)	grad_norm 7.2533 (nan)	loss_scale 256.0000 (11340.2795)	mem 5329MB	batch_time 24.9262
+[32m[2023-01-05 05:30:22 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2720/54685]	eta 22:34:58 lr 0.001000	 wd 0.1000	time 1.5795 (1.5645)	loss 0.6358 (0.6222)	loss-cls 10.0147 (9.7977)	loss-aux 0.1573 (0.1579)	grad_norm 7.8889 (nan)	loss_scale 256.0000 (11275.1018)	mem 5329MB	batch_time 24.9653
+[32m[2023-01-05 05:30:47 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2736/54685]	eta 22:34:31 lr 0.001000	 wd 0.1000	time 1.5685 (1.5644)	loss 0.6366 (0.6222)	loss-cls 10.0265 (9.7972)	loss-aux 0.1586 (0.1579)	grad_norm 7.2083 (nan)	loss_scale 256.0000 (11210.6862)	mem 5329MB	batch_time 24.8891
+[32m[2023-01-05 05:31:12 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2752/54685]	eta 22:34:05 lr 0.001000	 wd 0.1000	time 1.5515 (1.5644)	loss 0.6250 (0.6222)	loss-cls 9.8469 (9.7971)	loss-aux 0.1533 (0.1579)	grad_norm 5.8084 (nan)	loss_scale 256.0000 (11147.0193)	mem 5329MB	batch_time 24.9792
+[32m[2023-01-05 05:31:36 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2768/54685]	eta 22:33:38 lr 0.001000	 wd 0.1000	time 1.5117 (1.5644)	loss 0.6103 (0.6221)	loss-cls 9.6143 (9.7964)	loss-aux 0.1512 (0.1579)	grad_norm 7.7296 (nan)	loss_scale 256.0000 (11084.0881)	mem 5329MB	batch_time 24.9246
+[32m[2023-01-05 05:32:01 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2784/54685]	eta 22:33:12 lr 0.001000	 wd 0.1000	time 1.5493 (1.5644)	loss 0.6082 (0.6221)	loss-cls 9.5817 (9.7962)	loss-aux 0.1489 (0.1579)	grad_norm 11.5265 (nan)	loss_scale 256.0000 (11021.8801)	mem 5329MB	batch_time 24.9773
+[32m[2023-01-05 05:32:26 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2800/54685]	eta 22:32:46 lr 0.001000	 wd 0.1000	time 1.5583 (1.5644)	loss 0.6086 (0.6221)	loss-cls 9.5918 (9.7958)	loss-aux 0.1456 (0.1578)	grad_norm 3.5532 (nan)	loss_scale 256.0000 (10960.3827)	mem 5329MB	batch_time 25.0111
+[32m[2023-01-05 05:32:51 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2816/54685]	eta 22:32:19 lr 0.001000	 wd 0.1000	time 1.5518 (1.5643)	loss 0.6146 (0.6221)	loss-cls 9.6855 (9.7951)	loss-aux 0.1480 (0.1577)	grad_norm 1.7402 (nan)	loss_scale 256.0000 (10899.5840)	mem 5329MB	batch_time 24.8880
+[32m[2023-01-05 05:33:16 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2832/54685]	eta 22:31:53 lr 0.001000	 wd 0.1000	time 1.5632 (1.5643)	loss 0.6035 (0.6220)	loss-cls 9.5167 (9.7949)	loss-aux 0.1395 (0.1576)	grad_norm 3.0957 (nan)	loss_scale 256.0000 (10839.4719)	mem 5329MB	batch_time 24.9740
+[32m[2023-01-05 05:33:41 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2848/54685]	eta 22:31:26 lr 0.001000	 wd 0.1000	time 1.5577 (1.5643)	loss 0.5979 (0.6220)	loss-cls 9.4285 (9.7941)	loss-aux 0.1378 (0.1575)	grad_norm 2.3761 (nan)	loss_scale 256.0000 (10780.0351)	mem 5329MB	batch_time 24.9656
+[32m[2023-01-05 05:34:06 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2864/54685]	eta 22:31:03 lr 0.001000	 wd 0.1000	time 1.6018 (1.5643)	loss 0.6255 (0.6219)	loss-cls 9.8671 (9.7937)	loss-aux 0.1414 (0.1574)	grad_norm 2.3047 (nan)	loss_scale 256.0000 (10721.2621)	mem 5329MB	batch_time 25.0944
+[32m[2023-01-05 05:34:31 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2880/54685]	eta 22:30:37 lr 0.001000	 wd 0.1000	time 1.5616 (1.5643)	loss 0.6201 (0.6219)	loss-cls 9.7773 (9.7932)	loss-aux 0.1440 (0.1574)	grad_norm 4.5931 (nan)	loss_scale 256.0000 (10663.1420)	mem 5329MB	batch_time 24.9984
+[32m[2023-01-05 05:34:56 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2896/54685]	eta 22:30:10 lr 0.001000	 wd 0.1000	time 1.5301 (1.5642)	loss 0.6207 (0.6219)	loss-cls 9.7934 (9.7928)	loss-aux 0.1383 (0.1573)	grad_norm 2.1136 (nan)	loss_scale 256.0000 (10605.6638)	mem 5329MB	batch_time 24.9334
+[32m[2023-01-05 05:35:21 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2912/54685]	eta 22:29:44 lr 0.001000	 wd 0.1000	time 1.5334 (1.5642)	loss 0.6209 (0.6219)	loss-cls 9.7902 (9.7925)	loss-aux 0.1441 (0.1572)	grad_norm 13.5197 (nan)	loss_scale 256.0000 (10548.8170)	mem 5329MB	batch_time 24.9615
+[32m[2023-01-05 05:35:46 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2928/54685]	eta 22:29:18 lr 0.001000	 wd 0.1000	time 1.5510 (1.5642)	loss 0.6058 (0.6218)	loss-cls 9.5507 (9.7920)	loss-aux 0.1429 (0.1571)	grad_norm 0.6603 (nan)	loss_scale 256.0000 (10492.5913)	mem 5329MB	batch_time 24.9658
+[32m[2023-01-05 05:36:11 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2944/54685]	eta 22:28:53 lr 0.001000	 wd 0.1000	time 1.5570 (1.5642)	loss 0.6165 (0.6218)	loss-cls 9.7283 (9.7919)	loss-aux 0.1353 (0.1570)	grad_norm 0.9210 (nan)	loss_scale 256.0000 (10436.9766)	mem 5329MB	batch_time 25.0352
+[32m[2023-01-05 05:36:36 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2960/54685]	eta 22:28:27 lr 0.001000	 wd 0.1000	time 1.5565 (1.5642)	loss 0.6014 (0.6218)	loss-cls 9.4860 (9.7916)	loss-aux 0.1366 (0.1569)	grad_norm 1.8563 (nan)	loss_scale 256.0000 (10381.9629)	mem 5329MB	batch_time 24.9666
+[32m[2023-01-05 05:37:01 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2976/54685]	eta 22:28:02 lr 0.001000	 wd 0.1000	time 1.5532 (1.5642)	loss 0.6298 (0.6218)	loss-cls 9.9394 (9.7917)	loss-aux 0.1371 (0.1568)	grad_norm 2.6726 (nan)	loss_scale 256.0000 (10327.5405)	mem 5329MB	batch_time 25.0410
+[32m[2023-01-05 05:37:26 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][2992/54685]	eta 22:27:38 lr 0.001000	 wd 0.1000	time 1.5710 (1.5642)	loss 0.6194 (0.6218)	loss-cls 9.7721 (9.7915)	loss-aux 0.1385 (0.1567)	grad_norm 2.0836 (nan)	loss_scale 256.0000 (10273.7000)	mem 5329MB	batch_time 25.0709
+[32m[2023-01-05 05:37:51 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][3008/54685]	eta 22:27:12 lr 0.001000	 wd 0.1000	time 1.5373 (1.5642)	loss 0.6087 (0.6217)	loss-cls 9.6063 (9.7913)	loss-aux 0.1328 (0.1566)	grad_norm 3.3044 (nan)	loss_scale 256.0000 (10220.4320)	mem 5329MB	batch_time 24.9681
+[32m[2023-01-05 05:38:16 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][3024/54685]	eta 22:26:47 lr 0.001000	 wd 0.1000	time 1.5556 (1.5642)	loss 0.6170 (0.6217)	loss-cls 9.7404 (9.7911)	loss-aux 0.1323 (0.1564)	grad_norm 0.9006 (nan)	loss_scale 256.0000 (10167.7276)	mem 5329MB	batch_time 25.0639
+[32m[2023-01-05 05:38:41 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][3040/54685]	eta 22:26:21 lr 0.001000	 wd 0.1000	time 1.5341 (1.5642)	loss 0.6179 (0.6217)	loss-cls 9.7441 (9.7909)	loss-aux 0.1419 (0.1563)	grad_norm 1.5063 (nan)	loss_scale 256.0000 (10115.5778)	mem 5329MB	batch_time 24.9390
+[32m[2023-01-05 05:39:06 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][3056/54685]	eta 22:25:57 lr 0.001000	 wd 0.1000	time 1.5629 (1.5642)	loss 0.6084 (0.6217)	loss-cls 9.5971 (9.7904)	loss-aux 0.1365 (0.1562)	grad_norm 1.0820 (nan)	loss_scale 256.0000 (10063.9738)	mem 5329MB	batch_time 25.0823
+[32m[2023-01-05 05:39:32 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][3072/54685]	eta 22:25:33 lr 0.001000	 wd 0.1000	time 1.5708 (1.5642)	loss 0.6359 (0.6216)	loss-cls 10.0382 (9.7902)	loss-aux 0.1368 (0.1561)	grad_norm 2.1753 (nan)	loss_scale 256.0000 (10012.9073)	mem 5329MB	batch_time 25.0697
+[32m[2023-01-05 05:39:57 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][3088/54685]	eta 22:25:07 lr 0.001000	 wd 0.1000	time 1.5619 (1.5642)	loss 0.6160 (0.6216)	loss-cls 9.7226 (9.7903)	loss-aux 0.1330 (0.1560)	grad_norm 5.8249 (nan)	loss_scale 256.0000 (9962.3697)	mem 5329MB	batch_time 25.0157
+[32m[2023-01-05 05:40:21 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][3104/54685]	eta 22:24:41 lr 0.001000	 wd 0.1000	time 1.5590 (1.5642)	loss 0.6396 (0.6216)	loss-cls 10.1014 (9.7899)	loss-aux 0.1326 (0.1559)	grad_norm 1.1506 (nan)	loss_scale 256.0000 (9912.3530)	mem 5329MB	batch_time 24.9636
+[32m[2023-01-05 05:40:46 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][3120/54685]	eta 22:24:16 lr 0.001000	 wd 0.1000	time 1.5943 (1.5642)	loss 0.6160 (0.6216)	loss-cls 9.7265 (9.7895)	loss-aux 0.1302 (0.1558)	grad_norm 5.5643 (nan)	loss_scale 256.0000 (9862.8491)	mem 5329MB	batch_time 24.9882
+[32m[2023-01-05 05:41:11 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][3136/54685]	eta 22:23:50 lr 0.001000	 wd 0.1000	time 1.5485 (1.5642)	loss 0.6165 (0.6216)	loss-cls 9.7321 (9.7893)	loss-aux 0.1316 (0.1556)	grad_norm 10.3099 (nan)	loss_scale 256.0000 (9813.8502)	mem 5329MB	batch_time 25.0201
+[32m[2023-01-05 05:41:36 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][3152/54685]	eta 22:23:24 lr 0.001000	 wd 0.1000	time 1.5486 (1.5641)	loss 0.6257 (0.6216)	loss-cls 9.8778 (9.7893)	loss-aux 0.1340 (0.1555)	grad_norm 3.8574 (nan)	loss_scale 256.0000 (9765.3486)	mem 5329MB	batch_time 24.9542
+[32m[2023-01-05 05:42:01 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][3168/54685]	eta 22:22:58 lr 0.001000	 wd 0.1000	time 1.5320 (1.5641)	loss 0.6163 (0.6215)	loss-cls 9.7306 (9.7890)	loss-aux 0.1298 (0.1554)	grad_norm 0.5709 (nan)	loss_scale 256.0000 (9717.3367)	mem 5329MB	batch_time 24.9508
+[32m[2023-01-05 05:42:27 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][3184/54685]	eta 22:22:35 lr 0.001000	 wd 0.1000	time 1.5623 (1.5642)	loss 0.6030 (0.6215)	loss-cls 9.5198 (9.7887)	loss-aux 0.1282 (0.1553)	grad_norm 4.0399 (nan)	loss_scale 256.0000 (9669.8072)	mem 5329MB	batch_time 25.1532
+[32m[2023-01-05 05:42:51 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 257)[0m: INFO Train: [0/90][3200/54685]	eta 22:22:08 lr 0.001000	 wd 0.1000	time 1.5619 (1.5641)	loss 0.6220 (0.6215)	loss-cls 9.8122 (9.7885)	loss-aux 0.1393 (0.1552)	grad_norm 2.9352 (nan)	loss_scale 256.0000 (9622.7529)	mem 5329MB	batch_time 24.9114
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_6710.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_10586.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_1796.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_6247.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_22166.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_13320.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_21756.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n03001627/n03001627_16737.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_7411.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_22698.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_11827.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_28595.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_12064.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_25408.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_2852.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_15455.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_12757.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_28288.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_29695.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_9041.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n03001627/n03001627_6236.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_8539.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_26924.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_18350.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_7365.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_11816.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n03001627/n03001627_15830.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_2040.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_2322.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_13103.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_27611.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_19005.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n03001627/n03001627_5664.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_22719.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_11766.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_18654.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_8812.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_13244.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n02368116/n02368116_318.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_11950.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_7013.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n03957420/n03957420_33553.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_10675.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_17471.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n03001627/n03001627_5051.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_13261.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_9401.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_11746.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_8806.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_7072.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_30043.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_22995.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_7953.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_16320.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_7996.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_6567.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_13306.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_9215.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_13419.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_10242.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_15480.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_9819.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_8873.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_32625.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n03001627/n03001627_4524.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_3493.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_9031.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_33630.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_14020.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_135.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_22581.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_13396.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n03001627/n03001627_8737.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_33623.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_27412.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_25530.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_6669.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_22980.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_12654.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_20118.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_16430.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n03001627/n03001627_7026.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_24544.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_19281.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_13641.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_33259.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_27578.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_29025.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_465.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_27317.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n06470073/n06470073_47249.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_25750.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_27221.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n03001627/n03001627_15697.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n03001627/n03001627_1914.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_9068.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n03001627/n03001627_8783.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_12142.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n03001627/n03001627_14701.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_13950.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n03001627/n03001627_4456.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_4539.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_12231.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_9282.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_17877.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_18729.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_10353.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_24434.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_28726.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n03001627/n03001627_9566.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_8726.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_25717.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n03001627/n03001627_6850.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_12206.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_13871.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_27296.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_9249.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_15341.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_15811.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_7465.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n03001627/n03001627_8645.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_30926.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_12740.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10175248/n10175248_583.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_8925.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_27627.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n04132158/n04132158_7728.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_34297.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_14718.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_24638.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_12108.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n10105733/n10105733_23316.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_13516.JPEG
+ERROR IMG LOADED:  /mnt/znvme/dataset/imagenet22k/fall11_whole/n12245319/n12245319_12364.JPEG
+[32m[2023-01-05 05:42:52 swin_tutelmoe_base_patch4_window12_192_32expert_32gpu_22k][0m[33m(main_tutel_moe.py 271)[0m: INFO EPOCH 0 training takes 1:23:27
